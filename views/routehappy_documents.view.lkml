@@ -163,12 +163,15 @@ view: routehappy_documents {
   }
 
 
+  # ===========================
+  # MEASURES
+  # ===========================
 
-
-
-
-
-
-
+  # Volume
+  measure: count {
+    type: count
+    value_format_name: decimal_0
+    label: "Count"
+  }
 
 }
