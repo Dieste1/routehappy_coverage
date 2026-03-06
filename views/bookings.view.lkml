@@ -15,19 +15,19 @@ view: bookings {
   dimension: gds {
     type: string
     sql:  ${TABLE}.gds;;
-    group_label: "2. Content"
+    group_label: "2. Tracking"
   }
 
   dimension: gds_account_id {
     type: string
     sql:  ${TABLE}.gds_account_id;;
-    group_label: "2. Content"
+    group_label: "2. Tracking"
   }
 
   dimension: validating_carrier {
     type: string
     sql:  ${TABLE}.validating_carrier;;
-    group_label: "2. Content"
+    group_label: "2. Tracking"
   }
 
   dimension: id {
