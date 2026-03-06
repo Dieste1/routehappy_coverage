@@ -8,20 +8,19 @@ view: booking_routehappy_itineraries {
   dimension: booking_id {
     type: string
     sql:  ${TABLE}.booking_id;;
-    group_label: "2. Tracking"
+    hidden: yes
   }
 
   dimension: routehappy_document_id {
     type: string
     sql:  ${TABLE}.routehappy_document_id;;
-    group_label: "2. Tracking"
     hidden: yes
   }
 
   dimension: context {
     type: string
     sql:  ${TABLE}.context;;
-    group_label: "2. Tracking"
+    group_label: "1. Context"
   }
 
 }

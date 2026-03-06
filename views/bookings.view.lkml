@@ -32,7 +32,7 @@ view: bookings {
 
   dimension: id {
     type: string
-    label: "booking_id"
+    label: "Booking Id"
     sql:  ${TABLE}.id;;
     group_label: "2. Tracking"
   }
