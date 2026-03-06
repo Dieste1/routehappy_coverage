@@ -1,14 +1,14 @@
 connection: "ota"
 
-# include: "/views/**/*.view.lkml"
+include: "/views/**/*.view.lkml"
 
-# explore: bookings {
+explore: bookings {
 
-#   join: booking_routehappy_itineraries {
-#     type: inner
-#     relationship: one_to_many
-#     sql_on: ${booking_routehappy_itineraries.booking_id} = ${bookings.id} ;;
-#   }
+  join: booking_routehappy_itineraries {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${booking_routehappy_itineraries.booking_id} = ${bookings.id} ;;
+  }
 
 #   join: routehappy_documents {
 #     type: inner
@@ -18,4 +18,4 @@ connection: "ota"
 
 #   sql_always_where:
 #     ${bookings.booking_date} > '2025-01-01 00:00:00' ;;
-# }
+ }
