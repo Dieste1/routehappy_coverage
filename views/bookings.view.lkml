@@ -5,7 +5,7 @@ view: bookings {
   # DIMENSION GROUPS / KEYS
   # ===========================
 
-  dimension_group: dayd {
+  dimension_group: day {
     type:  time
     timeframes: [raw,hour,date,week,month,quarter,year]
     sql: ${TABLE}.booking_date;;
