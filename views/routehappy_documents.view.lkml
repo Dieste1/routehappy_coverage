@@ -170,8 +170,6 @@ view: routehappy_documents {
   # Volume
   measure: count_documents {
     type: count
-    filters: []
-    value_format_name: decimal_0
     label: "Count documents"
   }
 
