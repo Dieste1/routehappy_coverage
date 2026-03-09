@@ -5,8 +5,8 @@ view: routehappy_documents {
   # DIMENSION GROUPS / KEYS
   # ===========================
 
-
   dimension: id {
+    primary_key: yes
     type: string
     sql:  ${TABLE}.id;;
     hidden: yes
@@ -153,6 +153,7 @@ view: routehappy_documents {
   dimension: messages {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.errors.messages[0]')) ;;
+    label: "Error messages"
     group_label: "5. Errors"
   }
 
@@ -168,9 +169,71 @@ view: routehappy_documents {
   # ===========================
 
   measure: document_count {
-    type: count_distinct
-    sql: ${id} ;;
+    type: count
     label: "Document Count"
+  }
+
+  dimension: has_brand {
+    type: yesno
+    sql: ${brand} IS NOT NULL AND ${brand} != '' ;;
+    label: "Has Brand"
+    group_label: "6. Yes/No Inclusions"
+  }
+
+  dimension: has_checked_bag {
+    type: yesno
+    sql: ${checked_bag} IS NOT NULL AND ${checked_bag} != '' ;;
+    label: "Has Checked Bag"
+    group_label: "6. Yes/No Inclusions"
+  }
+
+  dimension: has_carry_on_bag {
+    type: yesno
+    sql: ${carry_on_bag} IS NOT NULL AND ${carry_on_bag} != '' ;;
+    label: "Has Carry On Bag"
+    group_label: "6. Yes/No Inclusions"
+  }
+
+  dimension: has_fare_basis {
+    type: yesno
+    sql: ${fare_basis} IS NOT NULL AND ${fare_basis} != '' ;;
+    label: "Has Fare Basis"
+    group_label: "6. Yes/No Inclusions"
+  }
+
+  dimension: has_error_message {
+    type: yesno
+    sql: ${messages} IS NOT NULL AND ${messages} != '' ;;
+    label: "Has Error Message"
+    group_label: "6. Yes/No Inclusions"
+  }
+
+  dimension: has_unmatched_fares {
+    type: yesno
+    sql: ${unmatched_fares} IS NOT NULL AND ${unmatched_fares} != '' ;;
+    label: "Has Unmatched Fares"
+    group_label: "6. Yes/No Inclusions"
+  }
+
+  dimension: has_advance_change {
+    type: yesno
+    sql: ${advance_change} IS NOT NULL AND ${advance_change} != '' ;;
+    label: "Has Advance Change"
+    group_label: "6. Yes/No Inclusions"
+  }
+
+  dimension: has_cancellation {
+    type: yesno
+    sql: ${cancellation} IS NOT NULL AND ${cancellation} != '' ;;
+    label: "Has Cancellation"
+    group_label: "6. Yes/No Inclusions"
+  }
+
+  dimension: has_same_day_change {
+    type: yesno
+    sql: ${same_day_change} IS NOT NULL AND ${same_day_change} != '' ;;
+    label: "Has Same Day Change"
+    group_label: "6. Yes/No Inclusions"
   }
 
 }
