@@ -236,4 +236,16 @@ view: routehappy_documents {
     group_label: "6. Yes/No Inclusions"
   }
 
+  dimension: error_type {
+    type: string
+    label: "Error Type"
+    group_label: "5. Errors"
+    sql:
+    CASE
+      WHEN ${messages} LIKE 'Fare for flight%' THEN 'Fare for flight is not matched'
+      WHEN ${messages} LIKE 'Segment #% is not matched%' THEN 'Segment # is not matched'
+      ELSE 'Successful'
+    END ;;
+  }
+
 }
