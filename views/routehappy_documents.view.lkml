@@ -170,7 +170,13 @@ view: routehappy_documents {
   # Volume
   measure: count_documents {
     type: count
-    label: "Count documents"
+    label: "Count Documents"
+  }
+
+  measure: doc_count_test {
+    type: count_distinct
+    sql: ${id} ;;
+    label: "Doc Count Test"
   }
 
 }
