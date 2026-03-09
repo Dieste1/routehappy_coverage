@@ -13,7 +13,6 @@ explore: bookings {
   join: routehappy_documents {
     type: inner
     relationship: many_to_one
-    required_joins: [booking_routehappy_itineraries]
     sql_on: ${booking_routehappy_itineraries.routehappy_document_id} = ${routehappy_documents.id} ;;
   }
 }
