@@ -15,7 +15,4 @@ explore: bookings {
     relationship: many_to_one
     sql_on: ${booking_routehappy_itineraries.routehappy_document_id} = ${routehappy_documents.id} ;;
   }
-
-  # sql_always_where:
-  #   ${bookings.booking_date} > '2025-01-01 00:00:00' ;;
 }
