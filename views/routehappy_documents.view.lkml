@@ -93,61 +93,61 @@ view: routehappy_documents {
   dimension: lounge_access {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].lounge_access[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: seat_selection {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].seat_selection[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: same_day_change {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].same_day_change[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: boarding_priority {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].boarding_priority[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: check_in_priority {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].check_in_priority[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: upgrade_eligibility {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].upgrade_eligibility[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: cancellation {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].cancellation[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: advance_change {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].advance_change[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: amenity_summary {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].amenity_summary')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: total_travel_time {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].total_travel_time')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: messages {
