@@ -38,7 +38,7 @@ view: bookings {
     group_label: "2. Tracking"
   }
 
-  dimension: booking_id_link    {
+  dimension: booking_id    {
     type: string
     sql: ${TABLE}.id ;;
     link: {
