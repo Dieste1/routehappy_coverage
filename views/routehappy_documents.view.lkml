@@ -742,7 +742,7 @@ dimension: checked_bag_included_bags {
   dimension: error_type {
     type: string
     label: "Error Type"
-    group_label: "5. Errors"
+    group_label: "3. Errors"
     sql:
     CASE
       WHEN ${messages} LIKE 'Fare for flight%' THEN 'Fare for flight is not matched'
