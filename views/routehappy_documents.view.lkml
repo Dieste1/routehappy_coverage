@@ -27,67 +27,67 @@ view: routehappy_documents {
   dimension: brand {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].brand')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: seat {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.seat')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: wifi {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.wifi')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: power {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.power')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: layout {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.layout')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: aircraft {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.aircraft')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: beverage {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.beverage')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: fresh_food {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.fresh_food')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: entertainment {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.entertainment')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: checked_bag {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].checked_bag[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: carry_on_bag {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].carry_on_bag[0][0]')) ;;
-    group_label: "2. Inclusions"
+    group_label: "2. Inclusion Ids"
   }
 
   dimension: lounge_access {
@@ -105,7 +105,7 @@ view: routehappy_documents {
   dimension: same_day_change {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].same_day_change[0][0]')) ;;
-    group_label: "4. Flexibility"
+    group_label: "2. Inclusions"
   }
 
   dimension: boarding_priority {
@@ -123,44 +123,44 @@ view: routehappy_documents {
   dimension: upgrade_eligibility {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].upgrade_eligibility[0][0]')) ;;
-    group_label: "4. Flexibility"
+    group_label: "2. Inclusions"
   }
 
   dimension: cancellation {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].cancellation[0][0]')) ;;
-    group_label: "4. Flexibility"
+    group_label: "2. Inclusions"
   }
 
   dimension: advance_change {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].advance_change[0][0]')) ;;
-    group_label: "4. Flexibility"
+    group_label: "2. Inclusions"
   }
 
   dimension: amenity_summary {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].amenity_summary')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusions"
   }
 
   dimension: total_travel_time {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].total_travel_time')) ;;
-    group_label: "3. Amenities"
+    group_label: "2. Inclusions"
   }
 
   dimension: messages {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.errors.messages[0]')) ;;
     label: "Error messages"
-    group_label: "5. Errors"
+    group_label: "3. Errors"
   }
 
   dimension: unmatched_fares {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.errors.unmatched_fares[0]')) ;;
-    group_label: "5. Errors"
+    group_label: "3. Errors"
   }
 
 #  ======================================================  Checked Bag Details ======================================================
@@ -169,28 +169,28 @@ view: routehappy_documents {
     type: string
     sql: ${checked_bag_documents.checked_bag_headline} ;;
     label: "Checked Bag Headline"
-    group_label: "7. Checked Bag Inclusions"
+    group_label: "4. Checked Bag Inclusions"
   }
 
   dimension: checked_bag_type_payload {
     type: string
     sql: ${checked_bag_documents.checked_bag_type} ;;
     label: "Checked Bag Type"
-    group_label: "7. Checked Bag Inclusions"
+    group_label: "4. Checked Bag Inclusions"
   }
 
   dimension: checked_bag_included_bags_payload {
     type: number
     sql: ${checked_bag_documents.checked_bag_included_bags} ;;
     label: "Checked Bag Included Bags"
-    group_label: "7. Checked Bag Inclusions"
+    group_label: "4. Checked Bag Inclusions"
   }
 
   dimension: has_checked_bag_payload_visible {
     type: yesno
     sql: ${checked_bag_documents.has_checked_bag_payload} ;;
     label: "Has Checked Bag Payload"
-    group_label: "7. Checked Bag Inclusions"
+    group_label: "4. Checked Bag Inclusions"
   }
 
   dimension: raw_data {
@@ -267,28 +267,28 @@ dimension: checked_bag_included_bags {
     type: string
     sql: ${carry_on_bag_documents.carry_on_bag_headline_raw} ;;
     label: "Carry On Bag Headline"
-    group_label: "8. Carry On Bag Description"
+    group_label: "5. Carry On Bag Description"
   }
 
   dimension: carry_on_bag_type {
     type: string
     sql: ${carry_on_bag_documents.carry_on_bag_type_raw} ;;
     label: "Carry On Bag Type"
-    group_label: "8. Carry On Bag Description"
+    group_label: "5. Carry On Bag Description"
   }
 
   dimension: carry_on_bag_included_bags {
     type: number
     sql: ${carry_on_bag_documents.carry_on_bag_included_bags_raw} ;;
     label: "Carry On Bag Included Bags"
-    group_label: "8. Carry On Bag Description"
+    group_label: "5. Carry On Bag Description"
   }
 
   dimension: has_carry_on_bag_payload {
     type: yesno
     sql: ${carry_on_bag_documents.has_carry_on_bag_payload_raw} ;;
     label: "Has Carry On Bag Payload"
-    group_label: "8. Carry On Bag Description"
+    group_label: "5. Carry On Bag Description"
   }
 
   dimension: carry_on_bag_headline_raw {
@@ -357,14 +357,14 @@ dimension: checked_bag_included_bags {
     type: string
     sql: ${brand_documents.brand_name_raw} ;;
     label: "Brand Name"
-    group_label: "9. Brand"
+    group_label: "6. Brand"
   }
 
   dimension: brand_payload_code {
     type: string
     sql: ${brand_documents.brand_codes_raw} ;;
     label: "Brand Code"
-    group_label: "9. Brand"
+    group_label: "6. Brand"
   }
 
   dimension: brand_name_raw {
@@ -385,49 +385,49 @@ dimension: checked_bag_included_bags {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_headline_raw} ;;
     label: "Cancellation Anytime Headline"
-    group_label: "10. Cancellation"
+    group_label: "7. Cancellation"
   }
 
   dimension: cancellation_anytime_no_show_headline {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} ;;
     label: "Cancellation Anytime No Show Headline"
-    group_label: "10. Cancellation"
+    group_label: "7. Cancellation"
   }
 
   dimension: cancellation_before_departure_headline {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_headline_raw} ;;
     label: "Cancellation Before Departure Headline"
-    group_label: "10. Cancellation"
+    group_label: "7. Cancellation"
   }
 
   dimension: cancellation_before_departure_no_show_headline {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} ;;
     label: "Cancellation Before Departure No Show Headline"
-    group_label: "10. Cancellation"
+    group_label: "7. Cancellation"
   }
 
   dimension: cancellation_after_departure_headline {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_headline_raw} ;;
     label: "Cancellation After Departure Headline"
-    group_label: "10. Cancellation"
+    group_label: "7. Cancellation"
   }
 
   dimension: cancellation_after_departure_no_show_headline {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} ;;
     label: "Cancellation After Departure No Show Headline"
-    group_label: "10. Cancellation"
+    group_label: "7. Cancellation"
   }
 
   dimension: cancellation_type {
     type: string
     sql: ${cancellation_documents.cancellation_type_raw} ;;
     label: "Cancellation Type"
-    group_label: "10. Cancellation"
+    group_label: "7. Cancellation"
   }
 
   dimension: has_cancellation_payload {
@@ -440,7 +440,7 @@ dimension: checked_bag_included_bags {
       OR ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL
       OR ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Payload"
-    group_label: "10. Cancellation"
+    group_label: "7. Cancellation"
   }
 
   dimension: cancellation_anytime_headline_raw {
@@ -528,49 +528,49 @@ dimension: checked_bag_included_bags {
     type: string
     sql: ${advance_change_documents.advance_change_anytime_headline_raw} ;;
     label: "Advance Change Anytime Headline"
-    group_label: "11. Advance Change"
+    group_label: "8. Advance Change"
   }
 
   dimension: advance_change_anytime_no_show_headline {
     type: string
     sql: ${advance_change_documents.advance_change_anytime_no_show_headline_raw} ;;
     label: "Advance Change Anytime No Show Headline"
-    group_label: "11. Advance Change"
+    group_label: "8. Advance Change"
   }
 
   dimension: advance_change_before_departure_headline {
     type: string
     sql: ${advance_change_documents.advance_change_before_departure_headline_raw} ;;
     label: "Advance Change Before Departure Headline"
-    group_label: "11. Advance Change"
+    group_label: "8. Advance Change"
   }
 
   dimension: advance_change_before_departure_no_show_headline {
     type: string
     sql: ${advance_change_documents.advance_change_before_departure_no_show_headline_raw} ;;
     label: "Advance Change Before Departure No Show Headline"
-    group_label: "11. Advance Change"
+    group_label: "8. Advance Change"
   }
 
   dimension: advance_change_after_departure_headline {
     type: string
     sql: ${advance_change_documents.advance_change_after_departure_headline_raw} ;;
     label: "Advance Change After Departure Headline"
-    group_label: "11. Advance Change"
+    group_label: "8. Advance Change"
   }
 
   dimension: advance_change_after_departure_no_show_headline {
     type: string
     sql: ${advance_change_documents.advance_change_after_departure_no_show_headline_raw} ;;
     label: "Advance Change After Departure No Show Headline"
-    group_label: "11. Advance Change"
+    group_label: "8. Advance Change"
   }
 
   dimension: advance_change_type {
     type: string
     sql: ${advance_change_documents.advance_change_type_raw} ;;
     label: "Advance Change Type"
-    group_label: "11. Advance Change"
+    group_label: "8. Advance Change"
   }
 
   dimension: has_advance_change_payload {
