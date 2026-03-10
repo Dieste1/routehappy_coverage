@@ -31,12 +31,22 @@ view: bookings {
   }
 
   dimension: id {
+    hidden: yes
     type: string
     label: "Booking Id"
     sql:  ${TABLE}.id;;
     group_label: "2. Tracking"
   }
 
+  dimension: booking_id_link    {
+    type: string
+    sql: ${TABLE}.id ;;
+    link: {
+      label: "Booking Id"
+      url: "https://reservations.voyagesalacarte.ca/booking/index/{{ value}}"
+    }
+    group_label: "2. Tracking"
+  }
 
   # ===========================
   # MEASURES
