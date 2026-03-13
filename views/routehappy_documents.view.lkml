@@ -441,7 +441,54 @@ dimension: checked_bag_included_bags {
       OR ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Payload"
     group_label: "7. Cancellation"
+    hidden:  yes
   }
+
+  # new yesno ============================================================================================================
+
+  dimension: has_cancellation_anytime_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_anytime_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Anytime Payload"
+    group_label: "9. Cancellation"
+  }
+
+  dimension: has_cancellation_anytime_no_show_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Anytime No-Show Payload"
+    group_label: "9. Cancellation"
+  }
+
+  dimension: has_cancellation_before_departure_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_before_departure_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Before Departure Payload"
+    group_label: "9. Cancellation"
+  }
+
+  dimension: has_cancellation_before_departure_no_show_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Before Departure No-Show Payload"
+    group_label: "9. Cancellation"
+  }
+
+  dimension: has_cancellation_after_departure_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation After Departure Payload"
+    group_label: "9. Cancellation"
+  }
+
+  dimension: has_cancellation_after_departure_no_show_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation After Departure No-Show Payload"
+    group_label: "9. Cancellation"
+  }
+
+  # new yesno ============================================================================================================
 
   dimension: cancellation_anytime_headline_raw {
     hidden: yes
