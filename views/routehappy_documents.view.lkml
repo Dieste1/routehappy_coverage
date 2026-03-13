@@ -132,6 +132,8 @@ view: routehappy_documents {
     group_label: "2. Inclusion Ids"
   }
 
+
+
   dimension: advance_change {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].advance_change[0][0]')) ;;
@@ -381,6 +383,52 @@ dimension: checked_bag_included_bags {
 
 #  ======================================================  Cancellation Details ======================================================
 
+
+  dimension: cancellation_anytime_refund_method {
+    type: string
+    sql: ${cancellation_documents.cancellation_anytime_refund_method_raw} ;;
+    label: "Anytime Refund Method"
+    group_label: "Refund Method"
+  }
+
+  dimension: cancellation_anytime_no_show_refund_method {
+    type: string
+    sql: ${cancellation_documents.cancellation_anytime_no_show_refund_method_raw} ;;
+    label: "Anytime No Show Refund Method"
+    group_label: "Refund Method"
+  }
+
+  dimension: cancellation_before_departure_refund_method {
+    type: string
+    sql: ${cancellation_documents.cancellation_before_departure_refund_method_raw} ;;
+    label: "Before Departure Refund Method"
+    group_label: "Refund Method"
+  }
+
+  dimension: cancellation_before_departure_no_show_refund_method {
+    type: string
+    sql: ${cancellation_documents.cancellation_before_departure_no_show_refund_method_raw} ;;
+    label: "Before Departure No Show Refund Method"
+    group_label: "Refund Method"
+  }
+
+  dimension: cancellation_after_departure_refund_method {
+    type: string
+    sql: ${cancellation_documents.cancellation_after_departure_refund_method_raw} ;;
+    label: "After Departure Refund Method"
+    group_label: "Refund Method"
+  }
+
+  dimension: cancellation_after_departure_no_show_refund_method {
+    type: string
+    sql: ${cancellation_documents.cancellation_after_departure_no_show_refund_method_raw} ;;
+    label: "After Departure No Show Refund Method"
+    group_label: "Refund Method"
+  }
+
+
+# ===================================== test ^ =====================================
+
   dimension: cancellation_anytime_headline {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_headline_raw} ;;
@@ -486,6 +534,46 @@ dimension: checked_bag_included_bags {
   }
 
   # new yesno ============================================================================================================
+
+  dimension: cancellation_anytime_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.refund_method')) ;;
+  }
+
+  dimension: cancellation_anytime_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.refund_method')) ;;
+  }
+
+  dimension: cancellation_before_departure_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.refund_method')) ;;
+  }
+
+  dimension: cancellation_before_departure_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.refund_method')) ;;
+  }
+
+  dimension: cancellation_after_departure_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.refund_method')) ;;
+  }
+
+  dimension: cancellation_after_departure_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.refund_method')) ;;
+  }
+
+# ===================================== test ^ =====================================
+
+
 
   dimension: cancellation_anytime_headline_raw {
     hidden: yes
