@@ -441,7 +441,6 @@ dimension: checked_bag_included_bags {
       OR ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Payload"
     group_label: "7. Cancellation"
-    hidden:  yes
   }
 
   dimension: has_cancellation_anytime_payload {
