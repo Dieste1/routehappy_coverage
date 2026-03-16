@@ -132,8 +132,6 @@ view: routehappy_documents {
     group_label: "2. Inclusion Ids"
   }
 
-
-
   dimension: advance_change {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].advance_change[0][0]')) ;;
@@ -381,12 +379,11 @@ dimension: checked_bag_included_bags {
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.brand_codes[0]')) ;;
   }
 
-#  ======================================================  Cancellation Details ======================================================
-
+#  ==================================================== Cancellation Refund Method Details ====================================================
 
   dimension: cancellation_anytime_refund_method {
     type: string
-    sql: ${cancellation_documents.cancellation_anytime_refund_method_raw} ;;
+    sql:${cancellation_documents.cancellation_anytime_refund_method_raw};;
     label: "Anytime Refund Method"
     group_label: "Refund Method"
   }
@@ -426,12 +423,129 @@ dimension: checked_bag_included_bags {
     group_label: "Refund Method"
   }
 
+# ===================================== Cancellation Refund Method Raw  =====================================
 
-# ===================================== test ^ =====================================
+  dimension: cancellation_anytime_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.refund_method')) ;;
+  }
+
+  dimension: cancellation_anytime_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.refund_method')) ;;
+  }
+
+  dimension: cancellation_before_departure_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.refund_method')) ;;
+  }
+
+  dimension: cancellation_before_departure_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.refund_method')) ;;
+  }
+
+  dimension: cancellation_after_departure_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.refund_method')) ;;
+  }
+
+  dimension: cancellation_after_departure_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.refund_method')) ;;
+  }
+
+# ===================================== Cancellation Description Details =====================================
+
+  dimension: cancellation_anytime_description {
+    type: string
+    sql:${cancellation_documents.cancellation_anytime_description_raw};;
+    label: "Anytime Refund Description"
+    group_label: "Fee Description"
+  }
+
+  dimension: cancellation_anytime_no_show_description {
+    type: string
+    sql:${cancellation_documents.cancellation_anytime_no_show_description_raw};;
+    label: "Anytime No Show Refund Description"
+    group_label: "Fee Description"
+  }
+
+  dimension: cancellation_before_departure_description {
+    type: string
+    sql:${cancellation_documents.cancellation_before_departure_description_raw};;
+    label: "Before Departure Refund Description"
+    group_label: "Fee Description"
+  }
+
+  dimension: cancellation_before_departure_no_show_description {
+    type: string
+    sql:${cancellation_documents.cancellation_before_departure_no_show_description_raw};;
+    label: "Before Departure No Show Refund Description"
+    group_label: "Fee Description"
+  }
+
+  dimension: cancellation_after_departure_description {
+    type: string
+    sql:${cancellation_documents.cancellation_after_departure_description_raw};;
+    label: "After Departure Refund Description"
+    group_label: "Fee Description"
+  }
+
+  dimension: cancellation_after_departure_no_show_description {
+    type: string
+    sql:${cancellation_documents.cancellation_after_departure_no_show_description_raw};;
+    label: "After Departure No Show Refund Description"
+    group_label: "Fee Description"
+  }
+# ===================================== Cancellation Description Raw =====================================
+
+  dimension: cancellation_anytime_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.description')) ;;
+  }
+
+  dimension: cancellation_anytime_no_show_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.description')) ;;
+  }
+
+  dimension: cancellation_before_departure_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.description')) ;;
+  }
+
+  dimension: cancellation_before_departure_no_show_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.description')) ;;
+  }
+  dimension: cancellation_after_departure_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.description')) ;;
+  }
+
+  dimension: cancellation_after_departure_no_show_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.description')) ;;
+  }
+
+# ===================================== Cancellation Headline Details =====================================
 
   dimension: cancellation_anytime_headline {
     type: string
-    sql: ${cancellation_documents.cancellation_anytime_headline_raw} ;;
+    sql:${cancellation_documents.cancellation_anytime_headline_raw} ;;
     label: "Cancellation Anytime Headline"
     group_label: "7. Cancellation"
   }
@@ -478,102 +592,7 @@ dimension: checked_bag_included_bags {
     group_label: "7. Cancellation"
   }
 
-  dimension: has_cancellation_payload {
-    type: yesno
-    sql:
-      ${cancellation_documents.cancellation_anytime_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_anytime_no_show_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_before_departure_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation Payload"
-    group_label: "7. Cancellation"
-  }
-
-  dimension: has_cancellation_anytime_payload {
-    type: yesno
-    sql: ${cancellation_documents.cancellation_anytime_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation Anytime Payload"
-    group_label: "7. Cancellation"
-  }
-
-  dimension: has_cancellation_anytime_no_show_payload {
-    type: yesno
-    sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation Anytime No-Show Payload"
-    group_label: "7. Cancellation"
-  }
-
-  dimension: has_cancellation_before_departure_payload {
-    type: yesno
-    sql: ${cancellation_documents.cancellation_before_departure_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation Before Departure Payload"
-    group_label: "7. Cancellation"
-  }
-
-  dimension: has_cancellation_before_departure_no_show_payload {
-    type: yesno
-    sql: ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation Before Departure No-Show Payload"
-    group_label: "7. Cancellation"
-  }
-
-  dimension: has_cancellation_after_departure_payload {
-    type: yesno
-    sql: ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation After Departure Payload"
-    group_label: "7. Cancellation"
-  }
-
-  dimension: has_cancellation_after_departure_no_show_payload {
-    type: yesno
-    sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation After Departure No-Show Payload"
-    group_label: "7. Cancellation"
-  }
-
-  # new yesno ============================================================================================================
-
-  dimension: cancellation_anytime_refund_method_raw {
-    hidden: yes
-    type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.refund_method')) ;;
-  }
-
-  dimension: cancellation_anytime_no_show_refund_method_raw {
-    hidden: yes
-    type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.refund_method')) ;;
-  }
-
-  dimension: cancellation_before_departure_refund_method_raw {
-    hidden: yes
-    type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.refund_method')) ;;
-  }
-
-  dimension: cancellation_before_departure_no_show_refund_method_raw {
-    hidden: yes
-    type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.refund_method')) ;;
-  }
-
-  dimension: cancellation_after_departure_refund_method_raw {
-    hidden: yes
-    type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.refund_method')) ;;
-  }
-
-  dimension: cancellation_after_departure_no_show_refund_method_raw {
-    hidden: yes
-    type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.refund_method')) ;;
-  }
-
-# ===================================== test ^ =====================================
-
-
+# ===================================== Cancellation Headlines Raw =====================================
 
   dimension: cancellation_anytime_headline_raw {
     hidden: yes
@@ -654,7 +673,64 @@ dimension: checked_bag_included_bags {
       END ;;
   }
 
-#  ======================================================  Advance Change Details ======================================================
+# ===================================== Has Cancellation Payload Details =====================================
+
+  dimension: has_cancellation_payload {
+    type: yesno
+    sql:
+      ${cancellation_documents.cancellation_anytime_headline_raw} IS NOT NULL
+      OR ${cancellation_documents.cancellation_anytime_no_show_headline_raw} IS NOT NULL
+      OR ${cancellation_documents.cancellation_before_departure_headline_raw} IS NOT NULL
+      OR ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} IS NOT NULL
+      OR ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL
+      OR ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Payload"
+    group_label: "7. Cancellation"
+  }
+
+  dimension: has_cancellation_anytime_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_anytime_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Anytime Payload"
+    group_label: "7. Cancellation"
+  }
+
+  dimension: has_cancellation_anytime_no_show_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Anytime No-Show Payload"
+    group_label: "7. Cancellation"
+  }
+
+  dimension: has_cancellation_before_departure_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_before_departure_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Before Departure Payload"
+    group_label: "7. Cancellation"
+  }
+
+  dimension: has_cancellation_before_departure_no_show_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation Before Departure No-Show Payload"
+    group_label: "7. Cancellation"
+  }
+
+  dimension: has_cancellation_after_departure_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation After Departure Payload"
+    group_label: "7. Cancellation"
+  }
+
+  dimension: has_cancellation_after_departure_no_show_payload {
+    type: yesno
+    sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
+    label: "Has Cancellation After Departure No-Show Payload"
+    group_label: "7. Cancellation"
+  }
+
+#  ====================================================== Advance Change Details ======================================================
 
   dimension: advance_change_anytime_headline {
     type: string
@@ -794,9 +870,6 @@ dimension: checked_bag_included_bags {
       ELSE 'unknown'
       END ;;
   }
-
-
-
 
 
   # ===========================

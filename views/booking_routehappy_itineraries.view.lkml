@@ -291,6 +291,7 @@ view: booking_routehappy_itineraries {
     group_label: "Cancellation"
   }
 
+
 #  =========================== Cancellation Anytime No Show Measures ===========================
   measure: itineraries_with_anytime_no_show {
     type: count
@@ -313,7 +314,6 @@ view: booking_routehappy_itineraries {
     label: "Anytime No Show Coverage %"
     group_label: "Cancellation"
   }
-
 #  =========================== Cancellation Before Departure Measures ===========================
   measure: itineraries_with_before_departure {
     type: count

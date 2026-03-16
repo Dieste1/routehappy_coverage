@@ -39,7 +39,7 @@ explore: bookings {
     type: left_outer
     relationship: many_to_one
     view_label: "Checked Bag Payload"
-    fields: []   # 👈 hide everything from this join
+    fields: []
     sql_on:
     ${checked_bag_documents.id} = ${routehappy_documents.checked_bag}
     AND ${checked_bag_documents.schema_name} = 'CheckedBaggage' ;;
