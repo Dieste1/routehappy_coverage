@@ -385,42 +385,42 @@ dimension: checked_bag_included_bags {
     type: string
     sql:${cancellation_documents.cancellation_anytime_refund_method_raw};;
     label: "Anytime Refund Method"
-    group_label: "Refund Method"
+    group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_no_show_refund_method_raw} ;;
     label: "Anytime No Show Refund Method"
-    group_label: "Refund Method"
+    group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_refund_method_raw} ;;
     label: "Before Departure Refund Method"
-    group_label: "Refund Method"
+    group_label: "7.3 Cancellation Before Departure"
   }
 
   dimension: cancellation_before_departure_no_show_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_no_show_refund_method_raw} ;;
-    label: "Before Departure No Show Refund Method"
-    group_label: "Refund Method"
+    label: "Refund Method"
+    group_label: "7.4 Cancellation Before Departure No Show"
   }
 
   dimension: cancellation_after_departure_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_refund_method_raw} ;;
     label: "After Departure Refund Method"
-    group_label: "Refund Method"
+    group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_no_show_refund_method_raw} ;;
     label: "After Departure No Show Refund Method"
-    group_label: "Refund Method"
+    group_label: "7.6 Cancellation After Departure No Show"
   }
 
 # ===================================== Cancellation Refund Method Raw  =====================================
@@ -467,42 +467,42 @@ dimension: checked_bag_included_bags {
     type: string
     sql:${cancellation_documents.cancellation_anytime_description_raw};;
     label: "Anytime Refund Description"
-    group_label: "Fee Description"
+    group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_description {
     type: string
     sql:${cancellation_documents.cancellation_anytime_no_show_description_raw};;
     label: "Anytime No Show Refund Description"
-    group_label: "Fee Description"
+    group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_description {
     type: string
     sql:${cancellation_documents.cancellation_before_departure_description_raw};;
     label: "Before Departure Refund Description"
-    group_label: "Fee Description"
+    group_label: "7.3 Cancellation Before Departure"
   }
 
   dimension: cancellation_before_departure_no_show_description {
     type: string
     sql:${cancellation_documents.cancellation_before_departure_no_show_description_raw};;
-    label: "Before Departure No Show Refund Description"
-    group_label: "Fee Description"
+    label: "Refund Description"
+    group_label: "7.4 Cancellation Before Departure No Show"
   }
 
   dimension: cancellation_after_departure_description {
     type: string
     sql:${cancellation_documents.cancellation_after_departure_description_raw};;
     label: "After Departure Refund Description"
-    group_label: "Fee Description"
+    group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_description {
     type: string
     sql:${cancellation_documents.cancellation_after_departure_no_show_description_raw};;
     label: "After Departure No Show Refund Description"
-    group_label: "Fee Description"
+    group_label: "7.6 Cancellation After Departure No Show"
   }
 # ===================================== Cancellation Description Raw =====================================
 
@@ -541,55 +541,738 @@ dimension: checked_bag_included_bags {
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.description')) ;;
   }
 
+# ===================================== Cancellation Assessment Details =====================================
+
+  dimension: cancellation_anytime_assessment {
+    type: string
+    sql:${cancellation_documents.cancellation_anytime_assessment_raw};;
+    label: "Anytime Assessment"
+    group_label: "7.1 Cancellation Anytime"
+  }
+
+  dimension: cancellation_anytime_no_show_assessment {
+    type: string
+    sql:${cancellation_documents.cancellation_anytime_no_show_assessment_raw};;
+    label: "Anytime No Show Assessment"
+    group_label: "7.2 Cancellation Anytime No Show"
+  }
+
+  dimension: cancellation_before_departure_assessment {
+    type: string
+    sql:${cancellation_documents.cancellation_before_departure_assessment_raw};;
+    label: "Before Departure Assessment"
+    group_label: "7.3 Cancellation Before Departure"
+  }
+
+  dimension: cancellation_before_departure_no_show_assessment {
+    type: string
+    sql:${cancellation_documents.cancellation_before_departure_no_show_assessment_raw};;
+    label: "Assessment"
+    group_label: "7.4 Cancellation Before Departure No Show"
+  }
+
+  dimension: cancellation_after_departure_assessment {
+    type: string
+    sql:${cancellation_documents.cancellation_after_departure_assessment_raw};;
+    label: "After Departure Assessment"
+    group_label: "7.5 Cancellation After Departure"
+  }
+
+  dimension: cancellation_after_departure_no_show_assessment {
+    type: string
+    sql:${cancellation_documents.cancellation_after_departure_no_show_assessment_raw};;
+    label: "After Departure No Show Assessment"
+    group_label: "7.6 Cancellation After Departure No Show"
+  }
+# ===================================== Cancellation Assessment Details Raw =====================================
+
+  dimension: cancellation_anytime_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.assessment')) ;;
+  }
+
+  dimension: cancellation_anytime_no_show_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.assessment')) ;;
+  }
+
+  dimension: cancellation_before_departure_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.assessment')) ;;
+  }
+
+   dimension: cancellation_before_departure_no_show_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.assessment')) ;;
+  }
+
+  dimension: cancellation_after_departure_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.assessment')) ;;
+  }
+
+  dimension: cancellation_after_departure_no_show_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.assessment')) ;;
+  }
+
+# ===================================== Cancellation Higher Lower Details =====================================
+
+  dimension: cancellation_anytime_higher_lower {
+    type: string
+    sql:${cancellation_documents.cancellation_anytime_higher_lower_raw};;
+    label: "Anytime Higher Lower"
+    group_label: "7.1 Cancellation Anytime"
+  }
+
+  dimension: cancellation_anytime_no_show_higher_lower {
+    type: string
+    sql:${cancellation_documents.cancellation_anytime_no_show_higher_lower_raw};;
+    label: "Anytime No Show Higher Lower"
+    group_label: "7.2 Cancellation Anytime No Show"
+  }
+
+  dimension: cancellation_before_departure_higher_lower {
+    type: string
+    sql:${cancellation_documents.cancellation_before_departure_higher_lower_raw};;
+    label: "Before Departure Higher Lower"
+    group_label: "7.3 Cancellation Before Departure"
+  }
+
+  dimension: cancellation_before_departure_no_show_higher_lower {
+    type: string
+    sql:${cancellation_documents.cancellation_before_departure_no_show_higher_lower_raw};;
+    label: "Higher Lower"
+    group_label: "7.4 Cancellation Before Departure No Show"
+  }
+
+  dimension: cancellation_after_departure_higher_lower {
+    type: string
+    sql:${cancellation_documents.cancellation_after_departure_higher_lower_raw};;
+    label: "After Departure Higher Lower"
+    group_label: "7.5 Cancellation After Departure"
+  }
+
+  dimension: cancellation_after_departure_no_show_higher_lower {
+    type: string
+    sql:${cancellation_documents.cancellation_after_departure_no_show_higher_lower_raw};;
+    label: "After Departure No Show Higher Lower"
+    group_label: "7.6 Cancellation After Departure No Show"
+  }
+
+# ===================================== Cancellation Higher Lower Details Raw =====================================
+
+  dimension: cancellation_anytime_higher_lower_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.fee.higher_lower')) ;;
+  }
+
+  dimension: cancellation_anytime_no_show_higher_lower_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.fee.higher_lower')) ;;
+  }
+
+  dimension: cancellation_before_departure_higher_lower_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.fee.higher_lower')) ;;
+  }
+
+  dimension: cancellation_before_departure_no_show_higher_lower_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.fee.higher_lower')) ;;
+  }
+
+  dimension: cancellation_after_departure_higher_lower_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.fee.higher_lower')) ;;
+  }
+
+  dimension: cancellation_after_departure_no_show_higher_lower_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.fee.higher_lower')) ;;
+  }
+
+# ===================================== Cancellation Percentage Details =====================================
+
+  dimension: cancellation_anytime_fee_percentage {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_anytime_fee_percentage_raw} = 0
+        OR ${cancellation_documents.cancellation_anytime_fee_percentage_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_anytime_fee_percentage_raw}, 2), '%')
+    END ;;
+    label: "Anytime Fee Percentage"
+    group_label: "7.1 Cancellation Anytime"
+  }
+
+  dimension: cancellation_anytime_no_show_fee_percentage {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_anytime_no_show_fee_percentage_raw} = 0
+        OR ${cancellation_documents.cancellation_anytime_no_show_fee_percentage_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_anytime_no_show_fee_percentage_raw}, 2), '%')
+    END ;;
+    label: "Anytime No Show Fee Percentage"
+    group_label: "7.2 Cancellation Anytime No Show"
+  }
+
+  dimension: cancellation_before_departure_fee_percentage {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_before_departure_fee_percentage_raw} = 0
+        OR ${cancellation_documents.cancellation_before_departure_fee_percentage_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_before_departure_fee_percentage_raw}, 2), '%')
+    END ;;
+    label: "Before Departure Fee Percentage"
+    group_label: "7.3 Cancellation Before Departure"
+  }
+
+  dimension: cancellation_before_departure_no_show_fee_percentage {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_before_departure_no_show_fee_percentage_raw} = 0
+        OR ${cancellation_documents.cancellation_before_departure_no_show_fee_percentage_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_before_departure_no_show_fee_percentage_raw}, 2), '%')
+    END ;;
+    label: "Fee Percentage"
+    group_label: "7.4 Cancellation Before Departure No Show"
+  }
+
+  dimension: cancellation_after_departure_fee_percentage {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_after_departure_fee_percentage_raw} = 0
+        OR ${cancellation_documents.cancellation_after_departure_fee_percentage_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_after_departure_fee_percentage_raw}, 2), '%')
+    END ;;
+    label: "After Departure Fee Percentage"
+    group_label: "7.5 Cancellation After Departure"
+  }
+
+  dimension: cancellation_after_departure_no_show_fee_percentage {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_after_departure_no_show_fee_percentage_raw} = 0
+        OR ${cancellation_documents.cancellation_after_departure_no_show_fee_percentage_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_after_departure_no_show_fee_percentage_raw}, 2), '%')
+    END ;;
+    label: "After Departure No Show Fee Percentage"
+    group_label: "7.5 Cancellation After Departure"
+  }
+
+# ===================================== Cancellation Percentage Details Raw =====================================
+
+  dimension: cancellation_anytime_fee_percentage_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.fee.percentage')) ;;
+  }
+
+  dimension: cancellation_anytime_no_show_fee_percentage_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.fee.percentage')) ;;
+  }
+
+  dimension: cancellation_before_departure_fee_percentage_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.fee.percentage')) ;;
+  }
+
+  dimension: cancellation_before_departure_no_show_fee_percentage_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.fee.percentage')) ;;
+  }
+
+  dimension: cancellation_after_departure_fee_percentage_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.fee.percentage')) ;;
+  }
+
+  dimension: cancellation_after_departure_no_show_fee_percentage_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.fee.percentage')) ;;
+  }
+
+# ===================================== Cancellation Fee Amount Details =====================================
+
+  dimension: cancellation_anytime_fee_amount {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_anytime_fee_amount_raw} = 0
+        OR ${cancellation_documents.cancellation_anytime_fee_amount_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_anytime_fee_amount_raw}, 2))
+    END ;;
+    label: "Anytime Fee Amount"
+    group_label: "7.1 Cancellation Anytime"
+  }
+
+  dimension: cancellation_anytime_no_show_fee_amount {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_anytime_no_show_fee_amount_raw} = 0
+        OR ${cancellation_documents.cancellation_anytime_no_show_fee_amount_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_anytime_no_show_fee_amount_raw}, 2))
+    END ;;
+    label: "Anytime No Show Fee Amount"
+    group_label: "7.2 Cancellation Anytime No Show"
+  }
+
+  dimension: cancellation_before_departure_fee_amount {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_before_departure_fee_amount_raw} = 0
+        OR ${cancellation_documents.cancellation_before_departure_fee_amount_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_before_departure_fee_amount_raw}, 2))
+    END ;;
+    label: "Before Departure Fee Amount"
+    group_label: "7.3 Cancellation Before Departure"
+  }
+
+  dimension: cancellation_before_departure_no_show_fee_amount {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_before_departure_no_show_fee_amount_raw} = 0
+        OR ${cancellation_documents.cancellation_before_departure_no_show_fee_amount_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_before_departure_no_show_fee_amount_raw}, 2))
+    END ;;
+    label: "Fee Amount"
+    group_label: "7.4 Cancellation Before Departure No Show"
+  }
+
+  dimension: cancellation_after_departure_fee_amount {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_after_departure_fee_amount_raw} = 0
+        OR ${cancellation_documents.cancellation_after_departure_fee_amount_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_after_departure_fee_amount_raw}, 2))
+    END ;;
+    label: "After Departure Fee Amount"
+    group_label: "7.5 Cancellation After Departure"
+  }
+
+  dimension: cancellation_after_departure_no_show_fee_amount {
+    type: string
+    sql:
+    CASE
+      WHEN ${cancellation_documents.cancellation_after_departure_no_show_fee_amount_raw} = 0
+        OR ${cancellation_documents.cancellation_after_departure_no_show_fee_amount_raw} IS NULL
+      THEN NULL
+      ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_after_departure_no_show_fee_amount_raw}, 2))
+    END ;;
+    label: "After Departure No Show Fee Amount"
+    group_label: "7.6 Cancellation After Departure No Show"
+  }
+# ===================================== Cancellation Fee Amount Details Raw =====================================
+
+  dimension: cancellation_anytime_fee_amount_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.fee.amount')) ;;
+  }
+
+  dimension: cancellation_anytime_no_show_fee_amount_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.fee.amount')) ;;
+  }
+
+  dimension: cancellation_before_departure_fee_amount_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.fee.amount')) ;;
+  }
+
+  dimension: cancellation_before_departure_no_show_fee_amount_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.fee.amount')) ;;
+  }
+
+  dimension: cancellation_after_departure_fee_amount_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.fee.amount')) ;;
+  }
+
+  dimension: cancellation_after_departure_no_show_fee_amount_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.fee.amount')) ;;
+  }
+
+# ===================================== Cancellation Description Template Details =====================================
+
+  dimension: cancellation_anytime_description_template {
+    type: string
+    sql: ${cancellation_documents.cancellation_anytime_description_template_raw} ;;
+    label: "Anytime Refund Description Grouped"
+    group_label: "7.1 Cancellation Anytime"
+  }
+
+  dimension: cancellation_anytime_no_show_description_template {
+    type: string
+    sql: ${cancellation_documents.cancellation_anytime_no_show_description_template_raw} ;;
+    label: "Anytime No Show Refund Description Grouped"
+    group_label: "7.2 Cancellation Anytime No Show"
+  }
+
+  dimension: cancellation_before_departure_description_template {
+    type: string
+    sql: ${cancellation_documents.cancellation_before_departure_description_template_raw} ;;
+    label: "Before Departure Refund Description Grouped"
+    group_label: "7.3 Cancellation Before Departure"
+  }
+
+  dimension: cancellation_before_departure_no_show_description_template {
+    type: string
+    sql: ${cancellation_documents.cancellation_before_departure_no_show_description_template_raw} ;;
+    label: "Description Grouped"
+    group_label: "7.4 Cancellation Before Departure No Show"
+  }
+
+  dimension: cancellation_after_departure_description_template {
+    type: string
+    sql: ${cancellation_documents.cancellation_after_departure_description_template_raw} ;;
+    label: "After Departure Refund Description Grouped"
+    group_label: "7.5 Cancellation After Departure"
+  }
+
+  dimension: cancellation_after_departure_no_show_description_template {
+    type: string
+    sql: ${cancellation_documents.cancellation_after_departure_no_show_description_template_raw} ;;
+    label: "After Departure No Show Refund Description Grouped"
+    group_label: "7.6 Cancellation After Departure No Show"
+  }
+
+# ===================================== Cancellation Description Template Raw =====================================
+
+  dimension: cancellation_anytime_description_template_raw {
+    hidden: yes
+    type: string
+    sql:
+      CASE
+        WHEN ${cancellation_anytime_description_raw} IS NULL OR ${cancellation_anytime_description_raw} = '' THEN NULL
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) = 'fully refundable ticket'
+      THEN 'Fully refundable ticket'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) = 'non-refundable'
+      THEN 'Non-refundable'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) LIKE 'ticket refund for usd%'
+      THEN 'Ticket refund for USD###'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) LIKE 'ticket refund for cad%'
+      THEN 'Ticket refund for CAD###'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) LIKE 'ticket refund for eur%'
+      THEN 'Ticket refund for EUR###'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) LIKE 'ticket refund for gbp%'
+      THEN 'Ticket refund for GBP###'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) LIKE 'refund fee is cad% whichever is higher'
+      THEN 'Refund fee is CAD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) LIKE 'refund fee is cad% whichever is lower'
+      THEN 'Refund fee is CAD### or ###% whichever is lower'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) LIKE 'refund fee is usd% whichever is higher'
+      THEN 'Refund fee is USD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_anytime_description_raw}) LIKE 'refund fee is %'
+      THEN 'Refund fee is ###%'
+
+      ELSE 'unknown'
+      END ;;
+  }
+
+  dimension: cancellation_anytime_no_show_description_template_raw {
+    hidden: yes
+    type: string
+    sql:
+      CASE
+        WHEN ${cancellation_anytime_no_show_description_raw} IS NULL OR ${cancellation_anytime_no_show_description_raw} = '' THEN NULL
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) = 'fully refundable ticket'
+      THEN 'Fully refundable ticket'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) = 'non-refundable'
+      THEN 'Non-refundable'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) LIKE 'ticket refund for usd%'
+      THEN 'Ticket refund for USD###'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) LIKE 'ticket refund for cad%'
+      THEN 'Ticket refund for CAD###'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) LIKE 'ticket refund for eur%'
+      THEN 'Ticket refund for EUR###'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) LIKE 'ticket refund for gbp%'
+      THEN 'Ticket refund for GBP###'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) LIKE 'refund fee is cad% whichever is higher'
+      THEN 'Refund fee is CAD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) LIKE 'refund fee is cad% whichever is lower'
+      THEN 'Refund fee is CAD### or ###% whichever is lower'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) LIKE 'refund fee is usd% whichever is higher'
+      THEN 'Refund fee is USD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_anytime_no_show_description_raw}) LIKE 'refund fee is %'
+      THEN 'Refund fee is ###%'
+
+      ELSE 'unknown'
+      END ;;
+  }
+
+  dimension: cancellation_before_departure_description_template_raw {
+    hidden: yes
+    type: string
+    sql:
+      CASE
+        WHEN ${cancellation_before_departure_description_raw} IS NULL OR ${cancellation_before_departure_description_raw} = '' THEN NULL
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) = 'fully refundable ticket'
+      THEN 'Fully refundable ticket'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) = 'non-refundable'
+      THEN 'Non-refundable'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) LIKE 'ticket refund for usd%'
+      THEN 'Ticket refund for USD###'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) LIKE 'ticket refund for cad%'
+      THEN 'Ticket refund for CAD###'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) LIKE 'ticket refund for eur%'
+      THEN 'Ticket refund for EUR###'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) LIKE 'ticket refund for gbp%'
+      THEN 'Ticket refund for GBP###'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) LIKE 'refund fee is cad% whichever is higher'
+      THEN 'Refund fee is CAD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) LIKE 'refund fee is cad% whichever is lower'
+      THEN 'Refund fee is CAD### or ###% whichever is lower'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) LIKE 'refund fee is usd% whichever is higher'
+      THEN 'Refund fee is USD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_before_departure_description_raw}) LIKE 'refund fee is %'
+      THEN 'Refund fee is ###%'
+
+      ELSE 'unknown'
+      END ;;
+  }
+
+  dimension: cancellation_before_departure_no_show_description_template_raw {
+    hidden: yes
+    type: string
+    sql:
+      CASE
+        WHEN ${cancellation_before_departure_no_show_description_raw} IS NULL OR ${cancellation_before_departure_no_show_description_raw} = '' THEN NULL
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) = 'fully refundable ticket'
+      THEN 'Fully refundable ticket'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) = 'non-refundable'
+      THEN 'Non-refundable'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) LIKE 'ticket refund for usd%'
+      THEN 'Ticket refund for USD###'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) LIKE 'ticket refund for cad%'
+      THEN 'Ticket refund for CAD###'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) LIKE 'ticket refund for eur%'
+      THEN 'Ticket refund for EUR###'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) LIKE 'ticket refund for gbp%'
+      THEN 'Ticket refund for GBP###'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) LIKE 'refund fee is cad% whichever is higher'
+      THEN 'Refund fee is CAD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) LIKE 'refund fee is cad% whichever is lower'
+      THEN 'Refund fee is CAD### or ###% whichever is lower'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) LIKE 'refund fee is usd% whichever is higher'
+      THEN 'Refund fee is USD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_before_departure_no_show_description_raw}) LIKE 'refund fee is %'
+      THEN 'Refund fee is ###%'
+
+      ELSE 'unknown'
+      END ;;
+  }
+
+  dimension: cancellation_after_departure_description_template_raw {
+    hidden: yes
+    type: string
+    sql:
+      CASE
+        WHEN ${cancellation_after_departure_description_raw} IS NULL OR ${cancellation_after_departure_description_raw} = '' THEN NULL
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) = 'fully refundable ticket'
+      THEN 'Fully refundable ticket'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) = 'non-refundable'
+      THEN 'Non-refundable'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) LIKE 'ticket refund for usd%'
+      THEN 'Ticket refund for USD###'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) LIKE 'ticket refund for cad%'
+      THEN 'Ticket refund for CAD###'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) LIKE 'ticket refund for eur%'
+      THEN 'Ticket refund for EUR###'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) LIKE 'ticket refund for gbp%'
+      THEN 'Ticket refund for GBP###'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) LIKE 'refund fee is cad% whichever is higher'
+      THEN 'Refund fee is CAD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) LIKE 'refund fee is cad% whichever is lower'
+      THEN 'Refund fee is CAD### or ###% whichever is lower'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) LIKE 'refund fee is usd% whichever is higher'
+      THEN 'Refund fee is USD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_after_departure_description_raw}) LIKE 'refund fee is %'
+      THEN 'Refund fee is ###%'
+
+      ELSE 'unknown'
+      END ;;
+  }
+
+  dimension: cancellation_after_departure_no_show_description_template_raw {
+    hidden: yes
+    type: string
+    sql:
+      CASE
+        WHEN ${cancellation_after_departure_no_show_description_raw} IS NULL OR ${cancellation_after_departure_no_show_description_raw} = '' THEN NULL
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) = 'fully refundable ticket'
+      THEN 'Fully refundable ticket'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) = 'non-refundable'
+      THEN 'Non-refundable'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) LIKE 'ticket refund for usd%'
+      THEN 'Ticket refund for USD###'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) LIKE 'ticket refund for cad%'
+      THEN 'Ticket refund for CAD###'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) LIKE 'ticket refund for eur%'
+      THEN 'Ticket refund for EUR###'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) LIKE 'ticket refund for gbp%'
+      THEN 'Ticket refund for GBP###'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) LIKE 'refund fee is cad% whichever is higher'
+      THEN 'Refund fee is CAD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) LIKE 'refund fee is cad% whichever is lower'
+      THEN 'Refund fee is CAD### or ###% whichever is lower'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) LIKE 'refund fee is usd% whichever is higher'
+      THEN 'Refund fee is USD### or ###% whichever is higher'
+
+      WHEN LOWER(${cancellation_after_departure_no_show_description_raw}) LIKE 'refund fee is %'
+      THEN 'Refund fee is ###%'
+
+      ELSE 'unknown'
+      END ;;
+  }
+
 # ===================================== Cancellation Headline Details =====================================
 
   dimension: cancellation_anytime_headline {
     type: string
     sql:${cancellation_documents.cancellation_anytime_headline_raw} ;;
-    label: "Cancellation Anytime Headline"
-    group_label: "7. Cancellation"
+    label: "Anytime Headline"
+    group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_headline {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} ;;
-    label: "Cancellation Anytime No Show Headline"
-    group_label: "7. Cancellation"
+    label: "Anytime No Show Headline"
+    group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_headline {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_headline_raw} ;;
-    label: "Cancellation Before Departure Headline"
-    group_label: "7. Cancellation"
+    label: "Before Departure Headline"
+    group_label: "7.3 Cancellation Before Departure"
   }
 
   dimension: cancellation_before_departure_no_show_headline {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} ;;
-    label: "Cancellation Before Departure No Show Headline"
-    group_label: "7. Cancellation"
+    label: "Headline"
+    group_label: "7.4 Cancellation Before Departure No Show"
   }
 
   dimension: cancellation_after_departure_headline {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_headline_raw} ;;
-    label: "Cancellation After Departure Headline"
-    group_label: "7. Cancellation"
+    label: "After Departure Headline"
+    group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_headline {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} ;;
-    label: "Cancellation After Departure No Show Headline"
-    group_label: "7. Cancellation"
-  }
-
-  dimension: cancellation_type {
-    type: string
-    sql: ${cancellation_documents.cancellation_type_raw} ;;
-    label: "Cancellation Type"
-    group_label: "7. Cancellation"
+    label: "After Departure No Show Headline"
+    group_label: "7.6 Cancellation After Departure No Show"
   }
 
 # ===================================== Cancellation Headlines Raw =====================================
@@ -630,104 +1313,48 @@ dimension: checked_bag_included_bags {
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.headline')) ;;
   }
 
-  dimension: cancellation_type_raw {
-    hidden: yes
-    type: string
-    sql:
-      CASE
-        WHEN LOWER(COALESCE(
-          JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.headline')),
-          JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.headline'))
-        )) LIKE 'fully refundable%'
-          OR LOWER(COALESCE(
-            JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.headline')),
-            JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.headline'))
-          )) LIKE 'refundable%'
-          THEN 'Fully Refundable'
-
-      WHEN LOWER(COALESCE(
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.headline'))
-      )) LIKE 'refundable for a fee%'
-      OR LOWER(COALESCE(
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.headline'))
-      )) LIKE 'refund for a fee%'
-      THEN 'Refundable for a fee'
-
-      WHEN LOWER(COALESCE(
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.headline'))
-      )) LIKE 'non-refundable%'
-      OR LOWER(COALESCE(
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.headline'))
-      )) LIKE 'non refundable%'
-      THEN 'Non Refundable'
-
-      ELSE 'unknown'
-      END ;;
-  }
-
 # ===================================== Has Cancellation Payload Details =====================================
-
-  dimension: has_cancellation_payload {
-    type: yesno
-    sql:
-      ${cancellation_documents.cancellation_anytime_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_anytime_no_show_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_before_departure_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL
-      OR ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation Payload"
-    group_label: "7. Cancellation"
-  }
 
   dimension: has_cancellation_anytime_payload {
     type: yesno
     sql: ${cancellation_documents.cancellation_anytime_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Anytime Payload"
-    group_label: "7. Cancellation"
+    group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: has_cancellation_anytime_no_show_payload {
     type: yesno
     sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation Anytime No-Show Payload"
-    group_label: "7. Cancellation"
+    label: "Has Cancellation Anytime No Show Payload"
+    group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: has_cancellation_before_departure_payload {
     type: yesno
     sql: ${cancellation_documents.cancellation_before_departure_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Before Departure Payload"
-    group_label: "7. Cancellation"
+    group_label: "7.3 Cancellation Before Departure"
   }
 
   dimension: has_cancellation_before_departure_no_show_payload {
     type: yesno
     sql: ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation Before Departure No-Show Payload"
-    group_label: "7. Cancellation"
+    label: "Has Cancellation Before Departure No Show Payload"
+    group_label: "7.4 Cancellation Before Departure No Show"
   }
 
   dimension: has_cancellation_after_departure_payload {
     type: yesno
     sql: ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation After Departure Payload"
-    group_label: "7. Cancellation"
+    group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: has_cancellation_after_departure_no_show_payload {
     type: yesno
     sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Cancellation After Departure No-Show Payload"
-    group_label: "7. Cancellation"
+    label: "Has Cancellation After Departure No Show Payload"
+    group_label: "7.6 Cancellation After Departure No Show"
   }
 
 #  ====================================================== Advance Change Details ======================================================
