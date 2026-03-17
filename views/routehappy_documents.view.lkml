@@ -965,7 +965,7 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_before_departure_no_show_description_template {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_no_show_description_template_raw} ;;
-    label: "Description Grouped"
+    label: "Refund Description Grouped"
     group_label: "7.4 Cancellation Before Departure No Show"
   }
 
