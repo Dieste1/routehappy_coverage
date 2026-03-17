@@ -196,7 +196,7 @@ view: booking_routehappy_itineraries {
     type: number
     sql: ${itineraries_with_advance_change} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
-    label: "Overall Advance Change Coverage %"
+    label: "Advance Change Coverage %"
     group_label: "Advance Change"
   }
 
@@ -219,7 +219,7 @@ view: booking_routehappy_itineraries {
     type: number
     sql: ${itineraries_with_cancellation} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
-    label: "Overall Cancellation Coverage %"
+    label: "Cancellation Coverage %"
     group_label: "Cancellation"
   }
 #  =========================== Cancellation After Departure Measures ===========================

@@ -169,28 +169,28 @@ view: routehappy_documents {
     type: string
     sql: ${checked_bag_documents.checked_bag_headline} ;;
     label: "Checked Bag Headline"
-    group_label: "4. Checked Bag Inclusions"
+    group_label: "4. Checked Bag"
   }
 
   dimension: checked_bag_type_payload {
     type: string
     sql: ${checked_bag_documents.checked_bag_type} ;;
     label: "Checked Bag Type"
-    group_label: "4. Checked Bag Inclusions"
+    group_label: "4. Checked Bag"
   }
 
   dimension: checked_bag_included_bags_payload {
     type: number
     sql: ${checked_bag_documents.checked_bag_included_bags} ;;
     label: "Checked Bag Included Bags"
-    group_label: "4. Checked Bag Inclusions"
+    group_label: "4. Checked Bag"
   }
 
   dimension: has_checked_bag_payload_visible {
     type: yesno
     sql: ${checked_bag_documents.has_checked_bag_payload} ;;
     label: "Has Checked Bag Payload"
-    group_label: "4. Checked Bag Inclusions"
+    group_label: "4. Checked Bag"
   }
 
   dimension: raw_data {
@@ -267,28 +267,28 @@ dimension: checked_bag_included_bags {
     type: string
     sql: ${carry_on_bag_documents.carry_on_bag_headline_raw} ;;
     label: "Carry On Bag Headline"
-    group_label: "5. Carry On Bag Description"
+    group_label: "5. Carry On Bag"
   }
 
   dimension: carry_on_bag_type {
     type: string
     sql: ${carry_on_bag_documents.carry_on_bag_type_raw} ;;
     label: "Carry On Bag Type"
-    group_label: "5. Carry On Bag Description"
+    group_label: "5. Carry On Bag"
   }
 
   dimension: carry_on_bag_included_bags {
     type: number
     sql: ${carry_on_bag_documents.carry_on_bag_included_bags_raw} ;;
     label: "Carry On Bag Included Bags"
-    group_label: "5. Carry On Bag Description"
+    group_label: "5. Carry On Bag"
   }
 
   dimension: has_carry_on_bag_payload {
     type: yesno
     sql: ${carry_on_bag_documents.has_carry_on_bag_payload_raw} ;;
     label: "Has Carry On Bag Payload"
-    group_label: "5. Carry On Bag Description"
+    group_label: "5. Carry On Bag"
   }
 
   dimension: carry_on_bag_headline_raw {
@@ -384,21 +384,21 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_anytime_refund_method {
     type: string
     sql:${cancellation_documents.cancellation_anytime_refund_method_raw};;
-    label: "Anytime Refund Method"
+    label: "Refund Method"
     group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_no_show_refund_method_raw} ;;
-    label: "Anytime No Show Refund Method"
+    label: "Refund Method"
     group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_refund_method_raw} ;;
-    label: "Before Departure Refund Method"
+    label: "Refund Method"
     group_label: "7.3 Cancellation Before Departure"
   }
 
@@ -412,14 +412,14 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_after_departure_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_refund_method_raw} ;;
-    label: "After Departure Refund Method"
+    label: "Refund Method"
     group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_refund_method {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_no_show_refund_method_raw} ;;
-    label: "After Departure No Show Refund Method"
+    label: "Refund Method"
     group_label: "7.6 Cancellation After Departure No Show"
   }
 
@@ -466,21 +466,21 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_anytime_description {
     type: string
     sql:${cancellation_documents.cancellation_anytime_description_raw};;
-    label: "Anytime Refund Description"
+    label: "Refund Description"
     group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_description {
     type: string
     sql:${cancellation_documents.cancellation_anytime_no_show_description_raw};;
-    label: "Anytime No Show Refund Description"
+    label: "Refund Description"
     group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_description {
     type: string
     sql:${cancellation_documents.cancellation_before_departure_description_raw};;
-    label: "Before Departure Refund Description"
+    label: "Refund Description"
     group_label: "7.3 Cancellation Before Departure"
   }
 
@@ -494,14 +494,14 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_after_departure_description {
     type: string
     sql:${cancellation_documents.cancellation_after_departure_description_raw};;
-    label: "After Departure Refund Description"
+    label: "Refund Description"
     group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_description {
     type: string
     sql:${cancellation_documents.cancellation_after_departure_no_show_description_raw};;
-    label: "After Departure No Show Refund Description"
+    label: "Refund Description"
     group_label: "7.6 Cancellation After Departure No Show"
   }
 # ===================================== Cancellation Description Raw =====================================
@@ -546,21 +546,21 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_anytime_assessment {
     type: string
     sql:${cancellation_documents.cancellation_anytime_assessment_raw};;
-    label: "Anytime Assessment"
+    label: "Assessment"
     group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_assessment {
     type: string
     sql:${cancellation_documents.cancellation_anytime_no_show_assessment_raw};;
-    label: "Anytime No Show Assessment"
+    label: "Assessment"
     group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_assessment {
     type: string
     sql:${cancellation_documents.cancellation_before_departure_assessment_raw};;
-    label: "Before Departure Assessment"
+    label: "Assessment"
     group_label: "7.3 Cancellation Before Departure"
   }
 
@@ -574,14 +574,14 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_after_departure_assessment {
     type: string
     sql:${cancellation_documents.cancellation_after_departure_assessment_raw};;
-    label: "After Departure Assessment"
+    label: "Assessment"
     group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_assessment {
     type: string
     sql:${cancellation_documents.cancellation_after_departure_no_show_assessment_raw};;
-    label: "After Departure No Show Assessment"
+    label: "Assessment"
     group_label: "7.6 Cancellation After Departure No Show"
   }
 # ===================================== Cancellation Assessment Details Raw =====================================
@@ -627,21 +627,21 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_anytime_higher_lower {
     type: string
     sql:${cancellation_documents.cancellation_anytime_higher_lower_raw};;
-    label: "Anytime Higher Lower"
+    label: "Higher Lower"
     group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_higher_lower {
     type: string
     sql:${cancellation_documents.cancellation_anytime_no_show_higher_lower_raw};;
-    label: "Anytime No Show Higher Lower"
+    label: "Higher Lower"
     group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_higher_lower {
     type: string
     sql:${cancellation_documents.cancellation_before_departure_higher_lower_raw};;
-    label: "Before Departure Higher Lower"
+    label: "Higher Lower"
     group_label: "7.3 Cancellation Before Departure"
   }
 
@@ -655,14 +655,14 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_after_departure_higher_lower {
     type: string
     sql:${cancellation_documents.cancellation_after_departure_higher_lower_raw};;
-    label: "After Departure Higher Lower"
+    label: "Higher Lower"
     group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_higher_lower {
     type: string
     sql:${cancellation_documents.cancellation_after_departure_no_show_higher_lower_raw};;
-    label: "After Departure No Show Higher Lower"
+    label: "Higher Lower"
     group_label: "7.6 Cancellation After Departure No Show"
   }
 
@@ -715,7 +715,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_anytime_fee_percentage_raw}, 2), '%')
     END ;;
-    label: "Anytime Fee Percentage"
+    label: "Fee Percentage"
     group_label: "7.1 Cancellation Anytime"
   }
 
@@ -728,7 +728,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_anytime_no_show_fee_percentage_raw}, 2), '%')
     END ;;
-    label: "Anytime No Show Fee Percentage"
+    label: "Fee Percentage"
     group_label: "7.2 Cancellation Anytime No Show"
   }
 
@@ -741,7 +741,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_before_departure_fee_percentage_raw}, 2), '%')
     END ;;
-    label: "Before Departure Fee Percentage"
+    label: "Fee Percentage"
     group_label: "7.3 Cancellation Before Departure"
   }
 
@@ -767,7 +767,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_after_departure_fee_percentage_raw}, 2), '%')
     END ;;
-    label: "After Departure Fee Percentage"
+    label: "Fee Percentage"
     group_label: "7.5 Cancellation After Departure"
   }
 
@@ -780,8 +780,8 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT(FORMAT(${cancellation_documents.cancellation_after_departure_no_show_fee_percentage_raw}, 2), '%')
     END ;;
-    label: "After Departure No Show Fee Percentage"
-    group_label: "7.5 Cancellation After Departure"
+    label: "Fee Percentage"
+    group_label: "7.6 Cancellation After Departure No Show"
   }
 
 # ===================================== Cancellation Percentage Details Raw =====================================
@@ -833,7 +833,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_anytime_fee_amount_raw}, 2))
     END ;;
-    label: "Anytime Fee Amount"
+    label: "Fee Amount"
     group_label: "7.1 Cancellation Anytime"
   }
 
@@ -846,7 +846,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_anytime_no_show_fee_amount_raw}, 2))
     END ;;
-    label: "Anytime No Show Fee Amount"
+    label: "Fee Amount"
     group_label: "7.2 Cancellation Anytime No Show"
   }
 
@@ -859,7 +859,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_before_departure_fee_amount_raw}, 2))
     END ;;
-    label: "Before Departure Fee Amount"
+    label: "Fee Amount"
     group_label: "7.3 Cancellation Before Departure"
   }
 
@@ -885,7 +885,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_after_departure_fee_amount_raw}, 2))
     END ;;
-    label: "After Departure Fee Amount"
+    label: "Fee Amount"
     group_label: "7.5 Cancellation After Departure"
   }
 
@@ -898,7 +898,7 @@ dimension: checked_bag_included_bags {
       THEN NULL
       ELSE CONCAT('$', FORMAT(${cancellation_documents.cancellation_after_departure_no_show_fee_amount_raw}, 2))
     END ;;
-    label: "After Departure No Show Fee Amount"
+    label: "Fee Amount"
     group_label: "7.6 Cancellation After Departure No Show"
   }
 # ===================================== Cancellation Fee Amount Details Raw =====================================
@@ -944,21 +944,21 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_anytime_description_template {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_description_template_raw} ;;
-    label: "Anytime Refund Description Grouped"
+    label: "Refund Description Grouped"
     group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_description_template {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_no_show_description_template_raw} ;;
-    label: "Anytime No Show Refund Description Grouped"
+    label: "Refund Description Grouped"
     group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_description_template {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_description_template_raw} ;;
-    label: "Before Departure Refund Description Grouped"
+    label: "Refund Description Grouped"
     group_label: "7.3 Cancellation Before Departure"
   }
 
@@ -972,14 +972,14 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_after_departure_description_template {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_description_template_raw} ;;
-    label: "After Departure Refund Description Grouped"
+    label: "Refund Description Grouped"
     group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_description_template {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_no_show_description_template_raw} ;;
-    label: "After Departure No Show Refund Description Grouped"
+    label: "Refund Description Grouped"
     group_label: "7.6 Cancellation After Departure No Show"
   }
 
@@ -1236,21 +1236,21 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_anytime_headline {
     type: string
     sql:${cancellation_documents.cancellation_anytime_headline_raw} ;;
-    label: "Anytime Headline"
+    label: "Headline"
     group_label: "7.1 Cancellation Anytime"
   }
 
   dimension: cancellation_anytime_no_show_headline {
     type: string
     sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} ;;
-    label: "Anytime No Show Headline"
+    label: "Headline"
     group_label: "7.2 Cancellation Anytime No Show"
   }
 
   dimension: cancellation_before_departure_headline {
     type: string
     sql: ${cancellation_documents.cancellation_before_departure_headline_raw} ;;
-    label: "Before Departure Headline"
+    label: "Headline"
     group_label: "7.3 Cancellation Before Departure"
   }
 
@@ -1264,14 +1264,14 @@ dimension: checked_bag_included_bags {
   dimension: cancellation_after_departure_headline {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_headline_raw} ;;
-    label: "After Departure Headline"
+    label: "Headline"
     group_label: "7.5 Cancellation After Departure"
   }
 
   dimension: cancellation_after_departure_no_show_headline {
     type: string
     sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} ;;
-    label: "After Departure No Show Headline"
+    label: "Headline"
     group_label: "7.6 Cancellation After Departure No Show"
   }
 
