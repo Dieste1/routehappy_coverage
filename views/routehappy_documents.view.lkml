@@ -171,24 +171,10 @@ view: routehappy_documents {
 
 #  ======================================================  Checked Bag Details ======================================================
 
-  dimension: checked_bag_headline_payload {
+  dimension: checked_bag_headline {
     type: string
-    sql: ${checked_bag_documents.checked_bag_headline} ;;
+    sql: ${checked_bag_documents.checked_bag_headline_raw} ;;
     label: "Checked Bag Headline"
-    group_label: "4. Checked Bag"
-  }
-
-  dimension: checked_bag_type_payload {
-    type: string
-    sql: ${checked_bag_documents.checked_bag_type} ;;
-    label: "Checked Bag Type"
-    group_label: "4. Checked Bag"
-  }
-
-  dimension: checked_bag_included_bags_payload {
-    type: number
-    sql: ${checked_bag_documents.checked_bag_included_bags} ;;
-    label: "Checked Bag Included Bags"
     group_label: "4. Checked Bag"
   }
 
@@ -220,38 +206,24 @@ view: routehappy_documents {
     group_label: "4. Checked Bag"
   }
 
-  dimension: checked_bag_application_weight{
-    type: string
-    sql: ${checked_bag_documents.checked_bag_application_raw} ;;
-    label: "Checked Bag Application Weight"
-    group_label: "4. Checked Bag"
-  }
-
-  dimension: checked_bag_kg_weight{
-    type: string
-    sql: ${checked_bag_documents.checked_bag_kg_raw} ;;
-    label: "Checked Bag Kg Weight"
-    group_label: "4. Checked Bag"
-  }
-
   dimension: checked_bag_headline_type {
     type: string
     label: "Checked Bag Headline Type"
     group_label: "4. Checked Bag"
     sql:
     CASE
-      WHEN ${checked_bag_headline_payload} LIKE '4 Free'                   THEN '4 Free'
-      WHEN ${checked_bag_headline_payload} LIKE '3 Free'                   THEN '3 Free'
-      WHEN ${checked_bag_headline_payload} LIKE '2 Free'                   THEN '2 Free'
-      WHEN ${checked_bag_headline_payload} LIKE '2 free up to %kg%'        THEN '2 free up to ##kg'
-      WHEN ${checked_bag_headline_payload} LIKE '1 free up to %kg% total'  THEN '1 free up to ##kg total'
-      WHEN ${checked_bag_headline_payload} LIKE '1 free up to %lb% total'  THEN '1 free up to ##lb total'
-      WHEN ${checked_bag_headline_payload} LIKE '1st for % - 2nd for %'    THEN '1st for ## - 2nd for ##'
-      WHEN ${checked_bag_headline_payload} LIKE '1st free'                 THEN '1st free'
-      WHEN ${checked_bag_headline_payload} LIKE '1st free & 2nd for %'     THEN '1st free & 2nd for ##'
-      WHEN ${checked_bag_headline_payload} LIKE 'For a fee'                THEN 'For a fee'
-      WHEN ${checked_bag_headline_payload} LIKE 'Up to %kg total'          THEN 'Up to ##kg total'
-      WHEN ${checked_bag_headline_payload} LIKE 'Up to %lb total'          THEN 'Up to ##lb total'
+      WHEN ${checked_bag_headline} LIKE '4 Free'                   THEN '4 Free'
+      WHEN ${checked_bag_headline} LIKE '3 Free'                   THEN '3 Free'
+      WHEN ${checked_bag_headline} LIKE '2 Free'                   THEN '2 Free'
+      WHEN ${checked_bag_headline} LIKE '2 free up to %kg%'        THEN '2 free up to ##kg'
+      WHEN ${checked_bag_headline} LIKE '1 free up to %kg% total'  THEN '1 free up to ##kg total'
+      WHEN ${checked_bag_headline} LIKE '1 free up to %lb% total'  THEN '1 free up to ##lb total'
+      WHEN ${checked_bag_headline} LIKE '1st for % - 2nd for %'    THEN '1st for ## - 2nd for ##'
+      WHEN ${checked_bag_headline} LIKE '1st free'                 THEN '1st free'
+      WHEN ${checked_bag_headline} LIKE '1st free & 2nd for %'     THEN '1st free & 2nd for ##'
+      WHEN ${checked_bag_headline} LIKE 'For a fee'                THEN 'For a fee'
+      WHEN ${checked_bag_headline} LIKE 'Up to %kg total'          THEN 'Up to ##kg total'
+      WHEN ${checked_bag_headline} LIKE 'Up to %lb total'          THEN 'Up to ##lb total'
       ELSE 'OTHER'
       END ;;
   }
@@ -270,7 +242,7 @@ view: routehappy_documents {
     group_label: "0. Debug"
   }
 
-  dimension: checked_bag_headline {
+  dimension: checked_bag_headline_raw {
     hidden:  yes
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline')) ;;
@@ -292,59 +264,6 @@ view: routehappy_documents {
     hidden:  yes
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.description')) ;;
-  }
-
-  dimension: checked_bag_application_raw {
-    hidden:  yes
-    type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.free_bags.weight.application')) ;;
-  }
-  dimension: checked_bag_kg_raw {
-    hidden:  yes
-    type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.free_bags.weight.kg')) ;;
-  }
-
-
-  dimension: checked_bag_type {
-    hidden:  yes
-    type: string
-    sql:
-    CASE
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 free up to%'
-        OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE 'up to 0kg%'
-        THEN 'checked bag not available'
-
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE 'for a fee%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1st for%'
-      THEN 'checked bag for a fee'
-
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 free up to%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1st free%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE 'up to%'
-      THEN '1st checked bag included'
-
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '2 free%'
-      THEN '2 checked bags included'
-
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '3 free%'
-      THEN '3 checked bags included'
-
-      ELSE 'unknown'
-      END ;;
-  }
-
-dimension: checked_bag_included_bags {
-  hidden:  yes
-  type: number
-  sql:
-    CASE
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '3 free%' THEN 3
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '2 free%' THEN 2
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 free%'
-        OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1st free%' THEN 1
-      ELSE 0
-    END ;;
   }
 
   dimension: has_checked_bag_payload {
