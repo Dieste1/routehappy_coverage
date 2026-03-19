@@ -24,6 +24,12 @@ view: routehappy_documents {
     group_label: "1. Request"
   }
 
+  dimension: rbd {
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].rbd')) ;;
+    group_label: "1. Request"
+  }
+
   dimension: brand {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].brand')) ;;
@@ -193,6 +199,43 @@ view: routehappy_documents {
     group_label: "4. Checked Bag"
   }
 
+  dimension: checked_bag_assessment {
+    type: string
+    sql: ${checked_bag_documents.checked_bag_assessment_raw} ;;
+    label: "Checked Bag Assessment"
+    group_label: "4. Checked Bag"
+  }
+
+  dimension: checked_bag_pieces {
+    type: string
+    sql: ${checked_bag_documents.checked_bag_pieces_raw} ;;
+    label: "Checked Bag Pieces"
+    group_label: "4. Checked Bag"
+  }
+
+  dimension: checked_bag_description {
+    type: string
+    sql: ${checked_bag_documents.checked_bag_description_raw} ;;
+    label: "Checked Bag Description"
+    group_label: "4. Checked Bag"
+  }
+
+  dimension: checked_bag_application_weight{
+    type: string
+    sql: ${checked_bag_documents.checked_bag_application_raw} ;;
+    label: "Checked Bag Application Weight"
+    group_label: "4. Checked Bag"
+  }
+
+  dimension: checked_bag_kg_weight{
+    type: string
+    sql: ${checked_bag_documents.checked_bag_kg_raw} ;;
+    label: "Checked Bag Kg Weight"
+    group_label: "4. Checked Bag"
+  }
+
+
+
   dimension: raw_data {
     hidden: yes
     type: string
@@ -212,6 +255,36 @@ view: routehappy_documents {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline')) ;;
   }
+
+  dimension: checked_bag_assessment_raw {
+    hidden:  yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.assessment')) ;;
+  }
+
+  dimension: checked_bag_pieces_raw {
+    hidden:  yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.free_bags.pieces')) ;;
+  }
+
+  dimension: checked_bag_description_raw {
+    hidden:  yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.description')) ;;
+  }
+
+  dimension: checked_bag_application_raw {
+    hidden:  yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.total_weight.application')) ;;
+  }
+  dimension: checked_bag_kg_raw {
+    hidden:  yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.total_weight.kg')) ;;
+  }
+
 
   dimension: checked_bag_type {
     hidden:  yes
