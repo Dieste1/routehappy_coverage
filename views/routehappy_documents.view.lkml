@@ -206,10 +206,10 @@ view: routehappy_documents {
     group_label: "4. Checked Bag"
   }
 
-  dimension: checked_bag_pieces {
+  dimension: checked_free_bag_pieces {
     type: string
-    sql: ${checked_bag_documents.checked_bag_pieces_raw} ;;
-    label: "Checked Bag Pieces"
+    sql: ${checked_bag_documents.checked_free_bag_pieces_raw} ;;
+    label: "Checked Free Bag Pieces"
     group_label: "4. Checked Bag"
   }
 
@@ -234,7 +234,27 @@ view: routehappy_documents {
     group_label: "4. Checked Bag"
   }
 
-
+  dimension: checked_bag_headline_type {
+    type: string
+    label: "Checked Bag Headline Type"
+    group_label: "4. Checked Bag"
+    sql:
+    CASE
+      WHEN ${checked_bag_headline_payload} LIKE '4 Free'                   THEN '4 Free'
+      WHEN ${checked_bag_headline_payload} LIKE '3 Free'                   THEN '3 Free'
+      WHEN ${checked_bag_headline_payload} LIKE '2 Free'                   THEN '2 Free'
+      WHEN ${checked_bag_headline_payload} LIKE '2 free up to %kg%'        THEN '2 free up to ##kg'
+      WHEN ${checked_bag_headline_payload} LIKE '1 free up to %kg% total'  THEN '1 free up to ##kg total'
+      WHEN ${checked_bag_headline_payload} LIKE '1 free up to %lb% total'  THEN '1 free up to ##lb total'
+      WHEN ${checked_bag_headline_payload} LIKE '1st for % - 2nd for %'    THEN '1st for ## - 2nd for ##'
+      WHEN ${checked_bag_headline_payload} LIKE '1st free'                 THEN '1st free'
+      WHEN ${checked_bag_headline_payload} LIKE '1st free & 2nd for %'     THEN '1st free & 2nd for ##'
+      WHEN ${checked_bag_headline_payload} LIKE 'For a fee'                THEN 'For a fee'
+      WHEN ${checked_bag_headline_payload} LIKE 'Up to %kg total'          THEN 'Up to ##kg total'
+      WHEN ${checked_bag_headline_payload} LIKE 'Up to %lb total'          THEN 'Up to ##lb total'
+      ELSE 'OTHER'
+      END ;;
+  }
 
   dimension: raw_data {
     hidden: yes
@@ -262,7 +282,7 @@ view: routehappy_documents {
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.assessment')) ;;
   }
 
-  dimension: checked_bag_pieces_raw {
+  dimension: checked_free_bag_pieces_raw {
     hidden:  yes
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.free_bags.pieces')) ;;
@@ -277,12 +297,12 @@ view: routehappy_documents {
   dimension: checked_bag_application_raw {
     hidden:  yes
     type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.total_weight.application')) ;;
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.free_bags.weight.application')) ;;
   }
   dimension: checked_bag_kg_raw {
     hidden:  yes
     type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.total_weight.kg')) ;;
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.free_bags.weight.kg')) ;;
   }
 
 
