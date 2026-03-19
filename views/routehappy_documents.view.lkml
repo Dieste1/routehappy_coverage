@@ -282,17 +282,24 @@ view: routehappy_documents {
     group_label: "5. Carry On Bag"
   }
 
-  dimension: carry_on_bag_type {
+  dimension: carry_on_bag_assessment {
     type: string
-    sql: ${carry_on_bag_documents.carry_on_bag_type_raw} ;;
-    label: "Carry On Bag Type"
+    sql: ${carry_on_bag_documents.carry_on_bag_assessment_raw} ;;
+    label: "Carry On Bag Assessment"
     group_label: "5. Carry On Bag"
   }
 
-  dimension: carry_on_bag_included_bags {
-    type: number
-    sql: ${carry_on_bag_documents.carry_on_bag_included_bags_raw} ;;
-    label: "Carry On Bag Included Bags"
+  dimension: carry_on_bag_description {
+    type: string
+    sql: ${carry_on_bag_documents.carry_on_bag_description_raw} ;;
+    label: "Carry On Bag Description"
+    group_label: "5. Carry On Bag"
+  }
+
+  dimension: carry_on_bag_free_bags_pieces {
+    type: string
+    sql: ${carry_on_bag_documents.carry_on_bag_free_bags_raw} ;;
+    label: "Carry On Bag Free Bags Pieces"
     group_label: "5. Carry On Bag"
   }
 
@@ -303,56 +310,48 @@ view: routehappy_documents {
     group_label: "5. Carry On Bag"
   }
 
+  dimension: carry_on_bag_headline_type {
+    type: string
+    label: "Carry On Bag Headline Type"
+    group_label: "5. Carry On Bag"
+    sql:
+    CASE
+      WHEN ${carry_on_bag_headline} LIKE '2 free up to %kgs'                      THEN '2 free up to ##kgs'
+      WHEN ${carry_on_bag_headline} LIKE '2 free up to %lbs'                      THEN '2 free up to ##lbs'
+      WHEN ${carry_on_bag_headline} LIKE '2 free & personal item'                 THEN '2 free & personal item'
+      WHEN ${carry_on_bag_headline} LIKE '1 free & personal item'                 THEN '1 free & personal item'
+      WHEN ${carry_on_bag_headline} LIKE '1 Free up to %kgs & personal item'      THEN '1 Free up to ##kgs & personal item'
+      WHEN ${carry_on_bag_headline} LIKE '1 Free up to %lbs & personal item'      THEN '1 Free up to ##lbs & personal item'
+      WHEN ${carry_on_bag_headline} LIKE 'Free up to %kg'                         THEN 'Free up to ##kg'
+      WHEN ${carry_on_bag_headline} LIKE 'Free up to %lb'                         THEN 'Free up to ##lb'
+      WHEN ${carry_on_bag_headline} LIKE '1 personal item'                        THEN '1 personal item'
+      WHEN ${carry_on_bag_headline} LIKE 'For a fee'                              THEN 'For a fee'
+      ELSE 'OTHER'
+      END ;;
+  }
+
   dimension: carry_on_bag_headline_raw {
     hidden: yes
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline')) ;;
   }
 
-  dimension: carry_on_bag_type_raw {
+  dimension: carry_on_bag_assessment_raw {
     hidden: yes
     type: string
-    sql:
-      CASE
-        WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 personal item%'
-          OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 free up to 0kg%'
-          OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE 'free up to 0kg%'
-          THEN 'carry-on not allowed'
-
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE 'for a fee%'
-      THEN 'carry-on bag for a fee'
-
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 free up to%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1st free & personal item%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 free & personal item%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE 'free up to%'
-      THEN 'carry-on bag included'
-
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '2 free & personal item%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '2 free up to%'
-      THEN '2 carry-on bags included'
-
-      ELSE 'unknown'
-      END ;;
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.assessment')) ;;
   }
 
-  dimension: carry_on_bag_included_bags_raw {
+  dimension: carry_on_bag_description_raw {
     hidden: yes
-    type: number
-    sql:
-      CASE
-        WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '2 free & personal item%'
-          OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '2 free up to%'
-          THEN 2
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.description')) ;;
+  }
 
-      WHEN LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 free up to%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1st free & personal item%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE '1 free & personal item%'
-      OR LOWER(JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.headline'))) LIKE 'free up to%'
-      THEN 1
-
-      ELSE 0
-      END ;;
+  dimension: carry_on_bag_free_bags_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.free_bags.pieces')) ;;
   }
 
   dimension: has_carry_on_bag_payload_raw {
