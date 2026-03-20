@@ -20,7 +20,13 @@ view: routehappy_documents {
 
   dimension: fare_basis {
     type: string
-    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].fbc')) ;;
+    sql:
+    CASE
+      WHEN ${bookings.gds} = 'Pkfare'
+           AND JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].fbc')) IN ('YOW', 'YRT')
+        THEN NULL
+      ELSE JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].fbc'))
+    END ;;
     group_label: "1. Request"
   }
 
