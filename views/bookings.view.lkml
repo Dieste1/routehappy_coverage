@@ -5,12 +5,12 @@ view: bookings {
   # DIMENSION GROUPS / KEYS
   # ===========================
 
-  # dimension_group: day {
-  #   type:  time
-  #   timeframes: [raw,hour,date,week,month,quarter,year]
-  #   sql: ${TABLE}.booking_date;;
-  #   group_label: "1. Time"
-  # }
+  dimension_group: day {
+    type:  time
+    timeframes: [raw,hour,date,week,month,quarter,year]
+    sql: ${TABLE}.booking_date;;
+    group_label: "1. Time"
+  }
 
   dimension: gds {
     type: string
