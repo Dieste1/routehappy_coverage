@@ -22,7 +22,7 @@ view: routehappy_documents {
     type: string
     sql:
     CASE
-      WHEN ${bookings.gds} = 'Pkfare'
+      WHEN ${optimizer_candidates.gds} = 'Pkfare'
            AND JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].fbc')) IN ('YOW', 'YRT')
         THEN NULL
       ELSE JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].fbc'))

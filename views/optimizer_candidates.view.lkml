@@ -13,6 +13,13 @@ view: optimizer_candidates {
     hidden: yes
   }
 
+  dimension_group: day {
+    type:  time
+    timeframes: [raw,hour,date,week,month,quarter,year]
+    sql: ${TABLE}.created_at;;
+    # group_label: "1. Time"
+  }
+
   dimension: attempt_id {
     type: string
     sql:  ${TABLE}.attempt_id;;
