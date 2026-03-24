@@ -3,53 +3,6 @@ connection: "ota"
 include: "/views/**/*.view.lkml"
 
 
-# explore: bookings {
-
-#   join: optimizer_attempt_bookings {
-#     type: inner
-#     relationship: one_to_many
-#     sql_on: ${optimizer_attempt_bookings.booking_id} = ${bookings.id} ;;
-#   }
-
-#   join: optimizer_candidates {
-#     type: inner
-#     relationship: one_to_many
-#     sql_on: ${optimizer_candidates.attempt_id} = ${optimizer_attempt_bookings.attempt_id} ;;
-#   }
-
-#   join: booking_routehappy_itineraries {
-#     type: inner
-#     relationship: one_to_many
-#     sql_on:
-#       ${booking_routehappy_itineraries.booking_id} = ${bookings.id}
-#       AND (
-#         (
-#           ${optimizer_candidates.reprice_type} = 'original'
-#           AND ${booking_routehappy_itineraries.context} = 'checkout'
-#         )
-#         OR
-#         (
-#           ${optimizer_candidates.id} = ${optimizer_attempt_bookings.candidate_id}
-#           AND ${booking_routehappy_itineraries.context} = 'booked'
-#         )
-#       ) ;;
-#   }
-
-#   join: routehappy_documents {
-#     type: inner
-#     relationship: many_to_one
-#     sql_on:
-#       ${booking_routehappy_itineraries.routehappy_document_id} = ${routehappy_documents.id}
-#       AND ${routehappy_documents.schema_name} = 'RespItinerary' ;;
-#   }
-
-
-
-
-
-
-# EXPLORE WITHOUT BOOKINGS
-
 explore: optimizer_attempt_bookings {
 
   join: optimizer_candidates {
@@ -83,42 +36,6 @@ explore: optimizer_attempt_bookings {
       ${booking_routehappy_itineraries.routehappy_document_id} = ${routehappy_documents.id}
       AND ${routehappy_documents.schema_name} = 'RespItinerary' ;;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# explore: bookings {
-
-#   join: booking_routehappy_itineraries {
-#     type: inner
-#     relationship: one_to_many
-#     sql_on: ${booking_routehappy_itineraries.booking_id} = ${bookings.id} ;;
-#   }
-
-#   join: routehappy_documents {
-#     type: inner
-#     relationship: many_to_one
-#     sql_on:
-#       ${booking_routehappy_itineraries.routehappy_document_id} = ${routehappy_documents.id}
-#       AND ${routehappy_documents.schema_name} = 'RespItinerary' ;;
-#   }
-
-
-
-
-
-
-
 
   join: checked_bag_documents {
     from: routehappy_documents

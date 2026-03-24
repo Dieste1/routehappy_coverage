@@ -27,7 +27,6 @@ view: booking_routehappy_itineraries {
   dimension: context {
     type: string
     sql:  ${TABLE}.context;;
-    group_label: "1. Context"
   }
 
   # ===========================
@@ -59,7 +58,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_checked_bag} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Checked Bag Coverage %"
-    group_label: "Checked Bag"
+    # group_label: "Checked Bag"
   }
 
 #  =========================== Carry On Bag Measures ===========================
@@ -82,7 +81,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_carry_on_bag} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Carry On Bag Coverage %"
-    group_label: "Carry On Bag"
+    # group_label: "Carry On Bag"
   }
 
 #  =========================== Fare Basis Measures ===========================
@@ -105,7 +104,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_fare_basis} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Fare Basis Coverage %"
-    group_label: "Fare Basis"
+    # group_label: "Fare Basis"
   }
 
 #  =========================== Brand Measures ===========================
@@ -128,7 +127,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_brand} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Brand Coverage %"
-    group_label: "Brand"
+    # group_label: "Brand"
   }
 
 #  =========================== Error Message Measures ===========================
@@ -151,7 +150,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_error_message} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Error Message Coverage %"
-    group_label: "Error Message"
+    # group_label: "Error Message"
   }
 
 #  =========================== Unmatched Fares Measures ===========================
@@ -174,7 +173,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_unmatched_fares} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Unmatched Fares Coverage %"
-    group_label: "Unmatched Fares"
+    # group_label: "Unmatched Fares"
   }
 
 #  =========================== Advance Change Measures ===========================
@@ -197,7 +196,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_advance_change} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Advance Change Coverage %"
-    group_label: "Advance Change"
+    # group_label: "Advance Change"
   }
 
 #  =========================== Cancellation Measures ===========================
@@ -380,7 +379,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_same_day_change} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Same Day Change Coverage %"
-    group_label: "Same Day Change"
+    # group_label: "Same Day Change"
   }
 
 }

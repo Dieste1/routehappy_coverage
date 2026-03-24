@@ -16,21 +16,25 @@ view: optimizer_attempt_bookings {
   dimension: attempt_id {
     type: string
     sql:  ${TABLE}.attempt_id;;
+    hidden: yes
     # group_label: "2. Tracking"
   }
 
   dimension: candidate_id {
     type: string
     sql:  ${TABLE}.candidate_id;;
+    hidden: yes
     # group_label: "2. Tracking"
   }
 
-  dimension: booking_id {
+  dimension: booking_id    {
     type: string
-    sql:  ${TABLE}.booking_id;;
-    # group_label: "2. Tracking"
+    sql: ${TABLE}.booking_id ;;
+    link: {
+      label: "Booking Id"
+      url: "https://reservations.voyagesalacarte.ca/booking/index/{{ value}}"
+    }
   }
-
 
   # ===========================
   # MEASURES
