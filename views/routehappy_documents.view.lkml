@@ -478,6 +478,32 @@ view: routehappy_documents {
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.refund_method')) ;;
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ===================================== Cancellation Description Details =====================================
 
   dimension: cancellation_anytime_description {

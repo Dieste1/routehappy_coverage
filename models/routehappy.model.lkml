@@ -87,4 +87,21 @@ explore: optimizer_attempt_bookings {
       ${advance_change_documents.id} = ${routehappy_documents.advance_change}
       AND ${advance_change_documents.schema_name} = 'AdvanceChange' ;;
   }
+
+
+
+  join: cancellations_comparisons {
+    type: left_outer
+    sql_on: ${booking_routehappy_itineraries.booking_id} = ${cancellations_comparisons.booking_id} ;;
+    relationship: one_to_one
+  }
+
+
+
+
+
+
+
+
+
 }
