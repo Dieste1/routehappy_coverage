@@ -1374,69 +1374,51 @@ view: routehappy_documents {
     group_label: "7.6 Cancellation After Departure No Show"
   }
 
-#  ====================================================== Advance Change Details ======================================================
+#  ====================================================== Advance Change Headline Details ======================================================
 
   dimension: advance_change_anytime_headline {
     type: string
     sql: ${advance_change_documents.advance_change_anytime_headline_raw} ;;
-    label: "Advance Change Anytime Headline"
-    group_label: "8. Advance Change"
+    label: "Headline"
+    group_label: "8.1 Advance Change Anytime"
   }
 
   dimension: advance_change_anytime_no_show_headline {
     type: string
     sql: ${advance_change_documents.advance_change_anytime_no_show_headline_raw} ;;
-    label: "Advance Change Anytime No Show Headline"
-    group_label: "8. Advance Change"
+    label: "Headline"
+    group_label: "8.2 Advance Change Anytime No show"
   }
 
   dimension: advance_change_before_departure_headline {
     type: string
     sql: ${advance_change_documents.advance_change_before_departure_headline_raw} ;;
-    label: "Advance Change Before Departure Headline"
-    group_label: "8. Advance Change"
+    label: "Headline"
+    group_label: "8.3 Advance Change Before Departure"
   }
 
   dimension: advance_change_before_departure_no_show_headline {
     type: string
     sql: ${advance_change_documents.advance_change_before_departure_no_show_headline_raw} ;;
-    label: "Advance Change Before Departure No Show Headline"
-    group_label: "8. Advance Change"
+    label: "Headline"
+    group_label: "8.4 Advance Change Before Departure No Show"
   }
 
   dimension: advance_change_after_departure_headline {
     type: string
     sql: ${advance_change_documents.advance_change_after_departure_headline_raw} ;;
-    label: "Advance Change After Departure Headline"
-    group_label: "8. Advance Change"
+    label: "Headline"
+    group_label: "8.5 Advance Change After Departure"
   }
 
   dimension: advance_change_after_departure_no_show_headline {
     type: string
     sql: ${advance_change_documents.advance_change_after_departure_no_show_headline_raw} ;;
-    label: "Advance Change After Departure No Show Headline"
-    group_label: "8. Advance Change"
+    label: "Headline"
+    group_label: "8.6 Advance Change After Departure No Show"
   }
 
-  dimension: advance_change_type {
-    type: string
-    sql: ${advance_change_documents.advance_change_type_raw} ;;
-    label: "Advance Change Type"
-    group_label: "8. Advance Change"
-  }
-
-  dimension: has_advance_change_payload {
-    type: yesno
-    sql:
-      ${advance_change_documents.advance_change_anytime_headline_raw} IS NOT NULL
-      OR ${advance_change_documents.advance_change_anytime_no_show_headline_raw} IS NOT NULL
-      OR ${advance_change_documents.advance_change_before_departure_headline_raw} IS NOT NULL
-      OR ${advance_change_documents.advance_change_before_departure_no_show_headline_raw} IS NOT NULL
-      OR ${advance_change_documents.advance_change_after_departure_headline_raw} IS NOT NULL
-      OR ${advance_change_documents.advance_change_after_departure_no_show_headline_raw} IS NOT NULL ;;
-    label: "Has Advance Change Payload"
-    group_label: "8. Advance Change"
-  }
+# ===================================== Advance Change Headline Details Raw =====================================
 
   dimension: advance_change_anytime_headline_raw {
     hidden: yes
@@ -1474,46 +1456,303 @@ view: routehappy_documents {
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.headline')) ;;
   }
 
-  dimension: advance_change_type_raw {
+
+# ===================================== Advance Change Assessment Details =====================================
+
+  dimension: advance_change_anytime_assessment {
+    type: string
+    sql:${advance_change_documents.advance_change_anytime_assessment_raw};;
+    label: "Assessment"
+    group_label: "8.1 Advance Change Anytime"
+  }
+  dimension: advance_change_anytime_no_show_assessment {
+    type: string
+    sql:${advance_change_documents.advance_change_anytime_no_show_assessment_raw};;
+    label: "Assessment"
+    group_label: "8.2 Advance Change Anytime No show"
+  }
+
+  dimension: advance_change_before_departure_assessment {
+    type: string
+    sql:${advance_change_documents.advance_change_before_departure_assessment_raw};;
+    label: "Assessment"
+    group_label: "8.3 Advance Change Before Departure"
+  }
+
+  dimension: advance_change_before_departure_no_show_assessment {
+    type: string
+    sql:${advance_change_documents.advance_change_before_departure_no_show_assessment_raw};;
+    label: "Assessment"
+    group_label: "8.4 Advance Change Before Departure No Show"
+  }
+
+  dimension: advance_change_after_departure_assessment {
+    type: string
+    sql:${advance_change_documents.advance_change_after_departure_assessment_raw};;
+    label: "Assessment"
+    group_label: "8.5 Advance Change After Departure"
+  }
+
+  dimension: advance_change_after_departure_no_show_assessment {
+    type: string
+    sql:${advance_change_documents.advance_change_after_departure_no_show_assessment_raw};;
+    label: "Assessment"
+    group_label: "8.6 Advance Change After Departure No Show"
+  }
+# ===================================== Advance Change Assessment Details Raw =====================================
+
+  dimension: advance_change_anytime_assessment_raw {
     hidden: yes
     type: string
-    sql:
-      CASE
-        WHEN LOWER(COALESCE(
-          JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.headline')),
-          JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.headline')),
-          JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.headline')),
-          JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.headline'))
-        )) LIKE 'not allowed%'
-          THEN 'not allowed'
-
-      WHEN LOWER(COALESCE(
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.headline'))
-      )) LIKE 'for a fee%'
-      OR LOWER(COALESCE(
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.headline'))
-      )) LIKE 'changeable for a fee%'
-      THEN 'for a fee'
-
-      WHEN LOWER(COALESCE(
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.headline'))
-      )) LIKE 'free%'
-      OR LOWER(COALESCE(
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.headline')),
-      JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.headline'))
-      )) LIKE 'for free%'
-      THEN 'free'
-
-      ELSE 'unknown'
-      END ;;
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.assessment')) ;;
   }
+
+  dimension: advance_change_anytime_no_show_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.assessment')) ;;
+  }
+
+  dimension: advance_change_before_departure_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.assessment')) ;;
+  }
+
+  dimension: advance_change_before_departure_no_show_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.assessment')) ;;
+  }
+
+  dimension: advance_change_after_departure_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.assessment')) ;;
+  }
+
+  dimension: advance_change_after_departure_no_show_assessment_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.assessment')) ;;
+  }
+
+  # ===================================== Has Advance Change Headline Details Raw =====================================
+
+  dimension: has_advance_change_anytime_payload {
+    type: yesno
+    sql:${advance_change_documents.advance_change_anytime_headline_raw} IS NOT NULL;;
+    label: "Has Advance Change Anytime Payload"
+    group_label: "8.1 Advance Change Anytime"
+  }
+
+  dimension: has_advance_change_anytime_no_show_payload {
+    type: yesno
+    sql:${advance_change_documents.advance_change_anytime_no_show_headline_raw} IS NOT NULL;;
+    label: "Has Advance Change Anytime No Show Payload"
+    group_label: "8.2 Advance Change Anytime No show"
+  }
+
+  dimension: has_advance_change_before_departure_payload {
+    type: yesno
+    sql:${advance_change_documents.advance_change_before_departure_headline_raw} IS NOT NULL;;
+    label: "Has Advance Change Before Departure Payload"
+    group_label: "8.3 Advance Change Before Departure"
+  }
+
+  dimension: has_advance_change_before_departure_no_show_payload {
+    type: yesno
+    sql:${advance_change_documents.advance_change_before_departure_no_show_headline_raw} IS NOT NULL;;
+    label: "Has Advance Change Before Departure No Show Payload"
+    group_label: "8.4 Advance Change Before Departure No Show"
+  }
+
+  dimension: has_advance_change_after_departure_payload {
+    type: yesno
+    sql:${advance_change_documents.advance_change_after_departure_headline_raw} IS NOT NULL;;
+    label: "Has Advance Change After Departure Payload"
+    group_label: "8.5 Advance Change After Departure"
+  }
+
+  dimension: has_advance_change_after_departure_no_show_payload {
+    type: yesno
+    sql:${advance_change_documents.advance_change_after_departure_no_show_headline_raw} IS NOT NULL;;
+    label: "Has Advance Change After Departure No Show Payload"
+    group_label: "8.6 Advance Change After Departure No Show"
+  }
+
+#  ==================================================== Advance Change Refund Method Details ====================================================
+
+  dimension: advance_change_anytime_refund_method {
+    type: string
+    sql:${advance_change_documents.advance_change_anytime_refund_method_raw};;
+    label: "Refund Method"
+    group_label: "8.1 Advance Change Anytime"
+  }
+
+  dimension: advance_change_anytime_no_show_refund_method {
+    type: string
+    sql: ${advance_change_documents.advance_change_anytime_no_show_refund_method_raw} ;;
+    label: "Refund Method"
+    group_label: "8.2 Advance Change Anytime No show"
+  }
+
+  dimension: advance_change_before_departure_refund_method {
+    type: string
+    sql: ${advance_change_documents.advance_change_before_departure_refund_method_raw} ;;
+    label: "Refund Method"
+    group_label: "8.3 Advance Change Before Departure"
+  }
+
+  dimension: advance_change_before_departure_no_show_refund_method {
+    type: string
+    sql: ${advance_change_documents.advance_change_before_departure_no_show_refund_method_raw} ;;
+    label: "Refund Method"
+    group_label: "8.4 Advance Change Before Departure No Show"
+  }
+
+  dimension: advance_change_after_departure_refund_method {
+    type: string
+    sql: ${advance_change_documents.advance_change_after_departure_refund_method_raw} ;;
+    label: "Refund Method"
+    group_label: "8.5 Advance Change After Departure"
+  }
+
+  dimension: advance_change_after_departure_no_show_refund_method {
+    type: string
+    sql: ${advance_change_documents.advance_change_after_departure_no_show_refund_method_raw} ;;
+    label: "Refund Method"
+    group_label: "8.6 Advance Change After Departure No Show"
+  }
+
+# ===================================== Advance Change Refund Method Raw  =====================================
+
+  dimension: advance_change_anytime_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.refund_method')) ;;
+  }
+
+  dimension: advance_change_anytime_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.refund_method')) ;;
+  }
+
+  dimension: advance_change_before_departure_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.refund_method')) ;;
+  }
+
+  dimension: advance_change_before_departure_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.refund_method')) ;;
+  }
+
+  dimension: advance_change_after_departure_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.refund_method')) ;;
+  }
+
+  dimension: advance_change_after_departure_no_show_refund_method_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.refund_method')) ;;
+  }
+
+
+# ===================================== Advance Change Description Details =====================================
+
+  dimension: advance_change_anytime_description {
+    type: string
+    sql:${advance_change_documents.advance_change_anytime_description_raw};;
+    label: "Refund Description"
+    group_label: "8.1 Advance Change Anytime"
+  }
+
+  dimension: advance_change_anytime_no_show_description {
+    type: string
+    sql:${advance_change_documents.advance_change_anytime_no_show_description_raw};;
+    label: "Refund Description"
+    group_label: "8.2 Advance Change Anytime No show"
+  }
+
+  dimension: advance_change_before_departure_description {
+    type: string
+    sql:${advance_change_documents.advance_change_before_departure_description_raw};;
+    label: "Refund Description"
+    group_label: "8.3 Advance Change Before Departure"
+  }
+
+  dimension: advance_change_before_departure_no_show_description {
+    type: string
+    sql:${advance_change_documents.advance_change_before_departure_no_show_description_raw};;
+    label: "Refund Description"
+    group_label: "8.4 Advance Change Before Departure No Show"
+  }
+
+  dimension: advance_change_after_departure_description {
+    type: string
+    sql:${advance_change_documents.advance_change_after_departure_description_raw};;
+    label: "Refund Description"
+    group_label: "8.5 Advance Change After Departure"
+  }
+
+  dimension: advance_change_after_departure_no_show_description {
+    type: string
+    sql:${advance_change_documents.advance_change_after_departure_no_show_description_raw};;
+    label: "Refund Description"
+    group_label: "8.6 Advance Change After Departure No Show"
+  }
+# ===================================== Advance Change Description Raw =====================================
+
+  dimension: advance_change_anytime_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime.description')) ;;
+  }
+
+  dimension: advance_change_anytime_no_show_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.anytime_no_show.description')) ;;
+  }
+
+  dimension: advance_change_before_departure_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure.description')) ;;
+  }
+
+  dimension: advance_change_before_departure_no_show_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.before_departure_no_show.description')) ;;
+  }
+  dimension: advance_change_after_departure_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure.description')) ;;
+  }
+
+  dimension: advance_change_after_departure_no_show_description_raw {
+    hidden: yes
+    type: string
+    sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.description')) ;;
+  }
+
+
+
+
+
+
+
+
+
+
 
 
   # ===========================

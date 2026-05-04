@@ -100,7 +100,7 @@ view: optimizer_candidates {
   }
 
   dimension: revenue {
-    type: string
+    type: number
     sql:  ${TABLE}.revenue;;
     group_label: "4. Fare Components"
   }
