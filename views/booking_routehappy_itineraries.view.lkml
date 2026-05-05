@@ -177,6 +177,7 @@ view: booking_routehappy_itineraries {
   }
 
 #  =========================== Advance Change Measures ===========================
+
   measure: itineraries_with_advance_change {
     type: count
     filters: [routehappy_documents.has_advance_change: "yes"]
@@ -196,7 +197,152 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_advance_change} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Advance Change Coverage %"
-    # group_label: "Advance Change"
+    group_label: "Advance Change"
+  }
+
+#  =========================== Advance Change Anytime Measures ===========================
+
+  measure: itineraries_with_anytime_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_anytime_payload: "yes"]
+    label: "With Anytime Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: itineraries_without_anytime_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_anytime_payload: "no"]
+    label: "Without Anytime Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: anytime_coverage_ratio {
+    type: number
+    sql: ${itineraries_with_anytime_advance_change} / NULLIF(${itinerary_count}, 0) ;;
+    value_format_name: percent_2
+    label: "Anytime Coverage %"
+    group_label: "Advance Change"
+  }
+
+#  =========================== Advance Change Anytime No Show Measures ===========================
+
+  measure: itineraries_with_anytime_no_show_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_anytime_no_show_payload: "yes"]
+    label: "With Anytime No Show Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: itineraries_without_anytime_no_show_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_anytime_no_show_payload: "no"]
+    label: "Without Anytime No Show Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: anytime_no_show_coverage_ratio {
+    type: number
+    sql: ${itineraries_with_anytime_no_show_advance_change} / NULLIF(${itinerary_count}, 0) ;;
+    value_format_name: percent_2
+    label: "Anytime No Show Coverage %"
+    group_label: "Advance Change"
+  }
+
+#  =========================== Advance Change Before Departure Measures ===========================
+
+  measure: itineraries_with_before_departure_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_before_departure_payload: "yes"]
+    label: "With Before Departure Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: itineraries_without_before_departure_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_before_departure_payload: "no"]
+    label: "Without Before Departure Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: before_departure_coverage_ratio {
+    type: number
+    sql: ${itineraries_with_before_departure_advance_change} / NULLIF(${itinerary_count}, 0) ;;
+    value_format_name: percent_2
+    label: "Before Departure Coverage %"
+    group_label: "Advance Change"
+  }
+
+#  =========================== Advance Change Before Departure No Show Measures ===========================
+
+  measure: itineraries_with_before_departure_no_show_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_before_departure_no_show_payload: "yes"]
+    label: "With Before Departure No Show Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: itineraries_without_before_departure_no_show_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_before_departure_no_show_payload: "no"]
+    label: "Without Before Departure No Show Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: before_departure_no_show_coverage_ratio {
+    type: number
+    sql: ${itineraries_with_before_departure_no_show_advance_change} / NULLIF(${itinerary_count}, 0) ;;
+    value_format_name: percent_2
+    label: "Before Departure No Show Coverage %"
+    group_label: "Advance Change"
+  }
+
+#  =========================== Advance Change After Departure Measures ===========================
+
+  measure: itineraries_with_after_departure_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_after_departure_payload: "yes"]
+    label: "With After Departure Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: itineraries_without_after_departure_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_after_departure_payload: "no"]
+    label: "Without After Departure Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: after_departure_coverage_ratio {
+    type: number
+    sql: ${itineraries_with_after_departure_advance_change} / NULLIF(${itinerary_count}, 0) ;;
+    value_format_name: percent_2
+    label: "After Departure Coverage %"
+    group_label: "Advance Change"
+  }
+
+#  =========================== Advance Change After Departure No Show Measures ===========================
+
+
+  measure: itineraries_with_after_departure_no_show_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_after_departure_no_show_payload: "yes"]
+    label: "With After Departure No Show Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: itineraries_without_after_departure_no_show_advance_change {
+    type: count
+    filters: [routehappy_documents.has_advance_change_after_departure_no_show_payload: "no"]
+    label: "Without After Departure No Show Advance Change"
+    group_label: "Advance Change"
+    hidden: yes
+  }
+  measure: after_departure_no_show_coverage_ratio {
+    type: number
+    sql: ${itineraries_with_after_departure_no_show_advance_change} / NULLIF(${itinerary_count}, 0) ;;
+    value_format_name: percent_2
+    label: "After Departure No Show Coverage %"
+    group_label: "Advance Change"
   }
 
 #  =========================== Cancellation Measures ===========================
