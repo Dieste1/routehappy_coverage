@@ -13,14 +13,14 @@ view: optimizer_candidate_routehappy_itineraries {
   }
 
   dimension: attempt_id {
-    type: number
-    hidden: yes
+    type: string
+    # hidden: yes
     sql: ${TABLE}.attempt_id ;;
   }
 
   dimension: candidate_id {
-    type: number
-    hidden: yes
+    type: string
+    # hidden: yes
     sql: ${TABLE}.candidate_id ;;
   }
 
