@@ -16,6 +16,7 @@ view: routehappy_documents {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.currency')) ;;
     group_label: "1. Request"
+    hidden: yes
   }
 
   dimension: fare_basis {
@@ -28,138 +29,161 @@ view: routehappy_documents {
       ELSE JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].fbc'))
     END ;;
     group_label: "1. Request"
+    hidden: yes
   }
 
   dimension: rbd {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].rbd')) ;;
     group_label: "1. Request"
+    hidden: yes
   }
 
   dimension: brand {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].brand')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: seat {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.seat')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: wifi {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.wifi')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: power {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.power')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: layout {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.layout')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: aircraft {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.aircraft')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: beverage {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.beverage')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: fresh_food {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.fresh_food')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: entertainment {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].amenity.entertainment')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: checked_bag {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].checked_bag[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: carry_on_bag {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].carry_on_bag[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: lounge_access {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].lounge_access[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: seat_selection {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].seat_selection[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: same_day_change {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].same_day_change[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: boarding_priority {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].boarding_priority[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: check_in_priority {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].check_in_priority[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: upgrade_eligibility {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].segments[0].upgrade_eligibility[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: cancellation {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].cancellation[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: advance_change {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].fares[0].advance_change[0][0]')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: amenity_summary {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].amenity_summary')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: total_travel_time {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.data.legs[0].total_travel_time')) ;;
     group_label: "2. Inclusion Ids"
+    hidden: yes
   }
 
   dimension: messages {
@@ -167,12 +191,14 @@ view: routehappy_documents {
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.errors.messages[0]')) ;;
     label: "Error messages"
     group_label: "3. Errors"
+    hidden: yes
   }
 
   dimension: unmatched_fares {
     type: string
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.errors.unmatched_fares[0]')) ;;
     group_label: "3. Errors"
+    hidden: yes
   }
 
 #  ======================================================  Checked Bag Details ======================================================
@@ -182,6 +208,7 @@ view: routehappy_documents {
     sql: ${checked_bag_documents.checked_bag_headline_raw} ;;
     label: "Checked Bag Headline"
     group_label: "4. Checked Bag"
+    hidden: yes
   }
 
   dimension: has_checked_bag_payload_visible {
@@ -189,6 +216,7 @@ view: routehappy_documents {
     sql: ${checked_bag_documents.has_checked_bag_payload} ;;
     label: "Has Checked Bag Payload"
     group_label: "4. Checked Bag"
+    hidden: yes
   }
 
   dimension: checked_bag_assessment {
@@ -196,6 +224,7 @@ view: routehappy_documents {
     sql: ${checked_bag_documents.checked_bag_assessment_raw} ;;
     label: "Checked Bag Assessment"
     group_label: "4. Checked Bag"
+    hidden: yes
   }
 
   dimension: checked_free_bag_pieces {
@@ -203,6 +232,7 @@ view: routehappy_documents {
     sql: ${checked_bag_documents.checked_free_bag_pieces_raw} ;;
     label: "Checked Free Bag Pieces"
     group_label: "4. Checked Bag"
+    hidden: yes
   }
 
   dimension: checked_bag_description {
@@ -210,12 +240,14 @@ view: routehappy_documents {
     sql: ${checked_bag_documents.checked_bag_description_raw} ;;
     label: "Checked Bag Description"
     group_label: "4. Checked Bag"
+    hidden: yes
   }
 
   dimension: checked_bag_headline_type {
     type: string
     label: "Checked Bag Headline Type"
     group_label: "4. Checked Bag"
+    hidden: yes
     sql:
     CASE
       WHEN ${checked_bag_headline} LIKE '4 Free'                   THEN '4 Free'
@@ -286,6 +318,7 @@ view: routehappy_documents {
     sql: ${carry_on_bag_documents.carry_on_bag_headline_raw} ;;
     label: "Carry On Bag Headline"
     group_label: "5. Carry On Bag"
+    hidden: yes
   }
 
   dimension: carry_on_bag_assessment {
@@ -293,6 +326,7 @@ view: routehappy_documents {
     sql: ${carry_on_bag_documents.carry_on_bag_assessment_raw} ;;
     label: "Carry On Bag Assessment"
     group_label: "5. Carry On Bag"
+    hidden: yes
   }
 
   dimension: carry_on_bag_description {
@@ -300,6 +334,7 @@ view: routehappy_documents {
     sql: ${carry_on_bag_documents.carry_on_bag_description_raw} ;;
     label: "Carry On Bag Description"
     group_label: "5. Carry On Bag"
+    hidden: yes
   }
 
   dimension: carry_on_bag_free_bags_pieces {
@@ -307,6 +342,7 @@ view: routehappy_documents {
     sql: ${carry_on_bag_documents.carry_on_bag_free_bags_raw} ;;
     label: "Carry On Bag Free Bags Pieces"
     group_label: "5. Carry On Bag"
+    hidden: yes
   }
 
   dimension: has_carry_on_bag_payload {
@@ -314,11 +350,13 @@ view: routehappy_documents {
     sql: ${carry_on_bag_documents.has_carry_on_bag_payload_raw} ;;
     label: "Has Carry On Bag Payload"
     group_label: "5. Carry On Bag"
+    hidden: yes
   }
 
   dimension: carry_on_bag_headline_type {
     type: string
     label: "Carry On Bag Headline Type"
+    hidden: yes
     group_label: "5. Carry On Bag"
     sql:
     CASE
@@ -375,6 +413,7 @@ view: routehappy_documents {
     sql: ${brand_documents.brand_name_raw} ;;
     label: "Brand Name"
     group_label: "6. Brand"
+    hidden: yes
   }
 
   dimension: brand_payload_code {
@@ -382,6 +421,7 @@ view: routehappy_documents {
     sql: ${brand_documents.brand_codes_raw} ;;
     label: "Brand Code"
     group_label: "6. Brand"
+    hidden: yes
   }
 
   dimension: brand_name_raw {
@@ -403,6 +443,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_anytime_refund_method_raw};;
     label: "Refund Method"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: cancellation_anytime_no_show_refund_method {
@@ -410,6 +451,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_anytime_no_show_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_refund_method {
@@ -417,6 +459,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_before_departure_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_no_show_refund_method {
@@ -424,6 +467,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_before_departure_no_show_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_refund_method {
@@ -431,6 +475,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_after_departure_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_no_show_refund_method {
@@ -438,6 +483,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_after_departure_no_show_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 
 # ===================================== Cancellation Refund Method Raw  =====================================
@@ -485,6 +531,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_anytime_description_raw};;
     label: "Refund Description"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: cancellation_anytime_no_show_description {
@@ -492,6 +539,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_anytime_no_show_description_raw};;
     label: "Refund Description"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_description {
@@ -499,6 +547,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_before_departure_description_raw};;
     label: "Refund Description"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_no_show_description {
@@ -506,6 +555,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_before_departure_no_show_description_raw};;
     label: "Refund Description"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_description {
@@ -513,6 +563,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_after_departure_description_raw};;
     label: "Refund Description"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_no_show_description {
@@ -520,6 +571,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_after_departure_no_show_description_raw};;
     label: "Refund Description"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 # ===================================== Cancellation Description Raw =====================================
 
@@ -565,6 +617,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_anytime_assessment_raw};;
     label: "Assessment"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: cancellation_anytime_no_show_assessment {
@@ -572,6 +625,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_anytime_no_show_assessment_raw};;
     label: "Assessment"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_assessment {
@@ -579,6 +633,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_before_departure_assessment_raw};;
     label: "Assessment"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_no_show_assessment {
@@ -586,6 +641,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_before_departure_no_show_assessment_raw};;
     label: "Assessment"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_assessment {
@@ -593,6 +649,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_after_departure_assessment_raw};;
     label: "Assessment"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_no_show_assessment {
@@ -600,6 +657,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_after_departure_no_show_assessment_raw};;
     label: "Assessment"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 # ===================================== Cancellation Assessment Details Raw =====================================
 
@@ -646,6 +704,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_anytime_higher_lower_raw};;
     label: "Higher Lower"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: cancellation_anytime_no_show_higher_lower {
@@ -653,6 +712,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_anytime_no_show_higher_lower_raw};;
     label: "Higher Lower"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_higher_lower {
@@ -660,6 +720,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_before_departure_higher_lower_raw};;
     label: "Higher Lower"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_no_show_higher_lower {
@@ -667,6 +728,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_before_departure_no_show_higher_lower_raw};;
     label: "Higher Lower"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_higher_lower {
@@ -674,6 +736,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_after_departure_higher_lower_raw};;
     label: "Higher Lower"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_no_show_higher_lower {
@@ -681,6 +744,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_after_departure_no_show_higher_lower_raw};;
     label: "Higher Lower"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 
 # ===================================== Cancellation Higher Lower Details Raw =====================================
@@ -734,6 +798,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Percentage"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: cancellation_anytime_no_show_fee_percentage {
@@ -747,6 +812,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Percentage"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_fee_percentage {
@@ -760,6 +826,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Percentage"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_no_show_fee_percentage {
@@ -773,6 +840,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Percentage"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_fee_percentage {
@@ -786,6 +854,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Percentage"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_no_show_fee_percentage {
@@ -799,6 +868,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Percentage"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 
 # ===================================== Cancellation Percentage Details Raw =====================================
@@ -852,6 +922,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Amount"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: cancellation_anytime_no_show_fee_amount {
@@ -865,6 +936,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Amount"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_fee_amount {
@@ -878,6 +950,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Amount"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_no_show_fee_amount {
@@ -891,6 +964,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Amount"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_fee_amount {
@@ -904,6 +978,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Amount"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_no_show_fee_amount {
@@ -917,6 +992,7 @@ view: routehappy_documents {
     END ;;
     label: "Fee Amount"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 # ===================================== Cancellation Fee Amount Details Raw =====================================
 
@@ -963,6 +1039,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_anytime_description_template_raw} ;;
     label: "Refund Description Grouped"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: cancellation_anytime_no_show_description_template {
@@ -970,6 +1047,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_anytime_no_show_description_template_raw} ;;
     label: "Refund Description Grouped"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_description_template {
@@ -977,6 +1055,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_before_departure_description_template_raw} ;;
     label: "Refund Description Grouped"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_no_show_description_template {
@@ -984,6 +1063,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_before_departure_no_show_description_template_raw} ;;
     label: "Refund Description Grouped"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_description_template {
@@ -991,6 +1071,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_after_departure_description_template_raw} ;;
     label: "Refund Description Grouped"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_no_show_description_template {
@@ -998,6 +1079,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_after_departure_no_show_description_template_raw} ;;
     label: "Refund Description Grouped"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 
 # ===================================== Cancellation Description Template Raw =====================================
@@ -1255,6 +1337,7 @@ view: routehappy_documents {
     sql:${cancellation_documents.cancellation_anytime_headline_raw} ;;
     label: "Headline"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: cancellation_anytime_no_show_headline {
@@ -1262,6 +1345,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} ;;
     label: "Headline"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_headline {
@@ -1269,6 +1353,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_before_departure_headline_raw} ;;
     label: "Headline"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: cancellation_before_departure_no_show_headline {
@@ -1276,6 +1361,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} ;;
     label: "Headline"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_headline {
@@ -1283,6 +1369,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_after_departure_headline_raw} ;;
     label: "Headline"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: cancellation_after_departure_no_show_headline {
@@ -1290,6 +1377,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} ;;
     label: "Headline"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 
 # ===================================== Cancellation Headlines Raw =====================================
@@ -1337,6 +1425,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_anytime_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Anytime Payload"
     group_label: "7.1 Cancellation Anytime"
+    hidden: yes
   }
 
   dimension: has_cancellation_anytime_no_show_payload {
@@ -1344,6 +1433,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_anytime_no_show_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Anytime No Show Payload"
     group_label: "7.2 Cancellation Anytime No Show"
+    hidden: yes
   }
 
   dimension: has_cancellation_before_departure_payload {
@@ -1351,6 +1441,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_before_departure_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Before Departure Payload"
     group_label: "7.3 Cancellation Before Departure"
+    hidden: yes
   }
 
   dimension: has_cancellation_before_departure_no_show_payload {
@@ -1358,6 +1449,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_before_departure_no_show_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation Before Departure No Show Payload"
     group_label: "7.4 Cancellation Before Departure No Show"
+    hidden: yes
   }
 
   dimension: has_cancellation_after_departure_payload {
@@ -1365,6 +1457,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_after_departure_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation After Departure Payload"
     group_label: "7.5 Cancellation After Departure"
+    hidden: yes
   }
 
   dimension: has_cancellation_after_departure_no_show_payload {
@@ -1372,6 +1465,7 @@ view: routehappy_documents {
     sql: ${cancellation_documents.cancellation_after_departure_no_show_headline_raw} IS NOT NULL ;;
     label: "Has Cancellation After Departure No Show Payload"
     group_label: "7.6 Cancellation After Departure No Show"
+    hidden: yes
   }
 
 #  ====================================================== Advance Change Headline Details ======================================================
@@ -1381,6 +1475,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_anytime_headline_raw} ;;
     label: "Headline"
     group_label: "8.1 Advance Change Anytime"
+    hidden: yes
   }
 
   dimension: advance_change_anytime_no_show_headline {
@@ -1388,6 +1483,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_anytime_no_show_headline_raw} ;;
     label: "Headline"
     group_label: "8.2 Advance Change Anytime No show"
+    hidden: yes
   }
 
   dimension: advance_change_before_departure_headline {
@@ -1395,6 +1491,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_before_departure_headline_raw} ;;
     label: "Headline"
     group_label: "8.3 Advance Change Before Departure"
+    hidden: yes
   }
 
   dimension: advance_change_before_departure_no_show_headline {
@@ -1402,6 +1499,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_before_departure_no_show_headline_raw} ;;
     label: "Headline"
     group_label: "8.4 Advance Change Before Departure No Show"
+    hidden: yes
   }
 
   dimension: advance_change_after_departure_headline {
@@ -1409,6 +1507,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_after_departure_headline_raw} ;;
     label: "Headline"
     group_label: "8.5 Advance Change After Departure"
+    hidden: yes
   }
 
   dimension: advance_change_after_departure_no_show_headline {
@@ -1416,6 +1515,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_after_departure_no_show_headline_raw} ;;
     label: "Headline"
     group_label: "8.6 Advance Change After Departure No Show"
+    hidden: yes
   }
 
 # ===================================== Advance Change Headline Details Raw =====================================
@@ -1464,12 +1564,14 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_anytime_assessment_raw};;
     label: "Assessment"
     group_label: "8.1 Advance Change Anytime"
+    hidden: yes
   }
   dimension: advance_change_anytime_no_show_assessment {
     type: string
     sql:${advance_change_documents.advance_change_anytime_no_show_assessment_raw};;
     label: "Assessment"
     group_label: "8.2 Advance Change Anytime No show"
+    hidden: yes
   }
 
   dimension: advance_change_before_departure_assessment {
@@ -1477,6 +1579,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_before_departure_assessment_raw};;
     label: "Assessment"
     group_label: "8.3 Advance Change Before Departure"
+    hidden: yes
   }
 
   dimension: advance_change_before_departure_no_show_assessment {
@@ -1484,6 +1587,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_before_departure_no_show_assessment_raw};;
     label: "Assessment"
     group_label: "8.4 Advance Change Before Departure No Show"
+    hidden: yes
   }
 
   dimension: advance_change_after_departure_assessment {
@@ -1491,6 +1595,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_after_departure_assessment_raw};;
     label: "Assessment"
     group_label: "8.5 Advance Change After Departure"
+    hidden: yes
   }
 
   dimension: advance_change_after_departure_no_show_assessment {
@@ -1498,6 +1603,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_after_departure_no_show_assessment_raw};;
     label: "Assessment"
     group_label: "8.6 Advance Change After Departure No Show"
+    hidden: yes
   }
 # ===================================== Advance Change Assessment Details Raw =====================================
 
@@ -1544,6 +1650,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_anytime_headline_raw} IS NOT NULL;;
     label: "Has Advance Change Anytime Payload"
     group_label: "8.1 Advance Change Anytime"
+    hidden: yes
   }
 
   dimension: has_advance_change_anytime_no_show_payload {
@@ -1551,6 +1658,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_anytime_no_show_headline_raw} IS NOT NULL;;
     label: "Has Advance Change Anytime No Show Payload"
     group_label: "8.2 Advance Change Anytime No show"
+    hidden: yes
   }
 
   dimension: has_advance_change_before_departure_payload {
@@ -1558,6 +1666,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_before_departure_headline_raw} IS NOT NULL;;
     label: "Has Advance Change Before Departure Payload"
     group_label: "8.3 Advance Change Before Departure"
+    hidden: yes
   }
 
   dimension: has_advance_change_before_departure_no_show_payload {
@@ -1565,6 +1674,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_before_departure_no_show_headline_raw} IS NOT NULL;;
     label: "Has Advance Change Before Departure No Show Payload"
     group_label: "8.4 Advance Change Before Departure No Show"
+    hidden: yes
   }
 
   dimension: has_advance_change_after_departure_payload {
@@ -1572,6 +1682,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_after_departure_headline_raw} IS NOT NULL;;
     label: "Has Advance Change After Departure Payload"
     group_label: "8.5 Advance Change After Departure"
+    hidden: yes
   }
 
   dimension: has_advance_change_after_departure_no_show_payload {
@@ -1579,6 +1690,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_after_departure_no_show_headline_raw} IS NOT NULL;;
     label: "Has Advance Change After Departure No Show Payload"
     group_label: "8.6 Advance Change After Departure No Show"
+    hidden: yes
   }
 
 #  ==================================================== Advance Change Refund Method Details ====================================================
@@ -1588,6 +1700,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_anytime_refund_method_raw};;
     label: "Refund Method"
     group_label: "8.1 Advance Change Anytime"
+    hidden: yes
   }
 
   dimension: advance_change_anytime_no_show_refund_method {
@@ -1595,6 +1708,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_anytime_no_show_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "8.2 Advance Change Anytime No show"
+    hidden: yes
   }
 
   dimension: advance_change_before_departure_refund_method {
@@ -1602,6 +1716,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_before_departure_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "8.3 Advance Change Before Departure"
+    hidden: yes
   }
 
   dimension: advance_change_before_departure_no_show_refund_method {
@@ -1609,6 +1724,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_before_departure_no_show_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "8.4 Advance Change Before Departure No Show"
+    hidden: yes
   }
 
   dimension: advance_change_after_departure_refund_method {
@@ -1616,6 +1732,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_after_departure_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "8.5 Advance Change After Departure"
+    hidden: yes
   }
 
   dimension: advance_change_after_departure_no_show_refund_method {
@@ -1623,6 +1740,7 @@ view: routehappy_documents {
     sql: ${advance_change_documents.advance_change_after_departure_no_show_refund_method_raw} ;;
     label: "Refund Method"
     group_label: "8.6 Advance Change After Departure No Show"
+    hidden: yes
   }
 
 # ===================================== Advance Change Refund Method Raw  =====================================
@@ -1671,6 +1789,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_anytime_description_raw};;
     label: "Refund Description"
     group_label: "8.1 Advance Change Anytime"
+    hidden: yes
   }
 
   dimension: advance_change_anytime_no_show_description {
@@ -1678,6 +1797,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_anytime_no_show_description_raw};;
     label: "Refund Description"
     group_label: "8.2 Advance Change Anytime No show"
+    hidden: yes
   }
 
   dimension: advance_change_before_departure_description {
@@ -1685,6 +1805,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_before_departure_description_raw};;
     label: "Refund Description"
     group_label: "8.3 Advance Change Before Departure"
+    hidden: yes
   }
 
   dimension: advance_change_before_departure_no_show_description {
@@ -1692,6 +1813,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_before_departure_no_show_description_raw};;
     label: "Refund Description"
     group_label: "8.4 Advance Change Before Departure No Show"
+    hidden: yes
   }
 
   dimension: advance_change_after_departure_description {
@@ -1699,6 +1821,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_after_departure_description_raw};;
     label: "Refund Description"
     group_label: "8.5 Advance Change After Departure"
+    hidden: yes
   }
 
   dimension: advance_change_after_departure_no_show_description {
@@ -1706,6 +1829,7 @@ view: routehappy_documents {
     sql:${advance_change_documents.advance_change_after_departure_no_show_description_raw};;
     label: "Refund Description"
     group_label: "8.6 Advance Change After Departure No Show"
+    hidden: yes
   }
 # ===================================== Advance Change Description Raw =====================================
 
@@ -1744,17 +1868,6 @@ view: routehappy_documents {
     sql: JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.after_departure_no_show.description')) ;;
   }
 
-
-
-
-
-
-
-
-
-
-
-
   # ===========================
   # MEASURES
   # ===========================
@@ -1762,6 +1875,7 @@ view: routehappy_documents {
   measure: document_count {
     type: count
     label: "Document Count"
+    hidden: yes
   }
 
   dimension: has_brand {
@@ -1769,6 +1883,7 @@ view: routehappy_documents {
     sql: ${brand} IS NOT NULL AND ${brand} != '' ;;
     label: "Has Brand"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: has_checked_bag {
@@ -1776,6 +1891,7 @@ view: routehappy_documents {
     sql: ${checked_bag} IS NOT NULL AND ${checked_bag} != '' ;;
     label: "Has Checked Bag"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: has_carry_on_bag {
@@ -1783,6 +1899,7 @@ view: routehappy_documents {
     sql: ${carry_on_bag} IS NOT NULL AND ${carry_on_bag} != '' ;;
     label: "Has Carry On Bag"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: has_fare_basis {
@@ -1790,6 +1907,7 @@ view: routehappy_documents {
     sql: ${fare_basis} IS NOT NULL AND ${fare_basis} != '' ;;
     label: "Has Fare Basis"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: has_error_message {
@@ -1797,6 +1915,7 @@ view: routehappy_documents {
     sql: ${messages} IS NOT NULL AND ${messages} != '' ;;
     label: "Has Error Message"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: has_unmatched_fares {
@@ -1804,6 +1923,7 @@ view: routehappy_documents {
     sql: ${unmatched_fares} IS NOT NULL AND ${unmatched_fares} != '' ;;
     label: "Has Unmatched Fares"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: has_advance_change {
@@ -1811,6 +1931,7 @@ view: routehappy_documents {
     sql: ${advance_change} IS NOT NULL AND ${advance_change} != '' ;;
     label: "Has Advance Change"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: has_cancellation {
@@ -1818,6 +1939,7 @@ view: routehappy_documents {
     sql: ${cancellation} IS NOT NULL AND ${cancellation} != '' ;;
     label: "Has Cancellation"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: has_same_day_change {
@@ -1825,11 +1947,13 @@ view: routehappy_documents {
     sql: ${same_day_change} IS NOT NULL AND ${same_day_change} != '' ;;
     label: "Has Same Day Change"
     group_label: "9. Yes/No Inclusions"
+    hidden: yes
   }
 
   dimension: error_type {
     type: string
     label: "Error Type"
+    hidden: yes
     group_label: "3. Errors"
     sql:
     CASE

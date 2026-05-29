@@ -36,6 +36,7 @@ view: booking_routehappy_itineraries {
  measure: itinerary_count {
     type: count
     label: "Itinerary Count"
+    hidden: yes
   }
 
 #  =========================== Checked Bag Measures ===========================
@@ -58,6 +59,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_checked_bag} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Checked Bag Coverage %"
+    hidden: yes
     # group_label: "Checked Bag"
   }
 
@@ -81,6 +83,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_carry_on_bag} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Carry On Bag Coverage %"
+    hidden: yes
     # group_label: "Carry On Bag"
   }
 
@@ -104,6 +107,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_fare_basis} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Fare Basis Coverage %"
+    hidden: yes
     # group_label: "Fare Basis"
   }
 
@@ -127,6 +131,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_brand} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Brand Coverage %"
+    hidden: yes
     # group_label: "Brand"
   }
 
@@ -150,6 +155,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_error_message} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Error Message Coverage %"
+    hidden: yes
     # group_label: "Error Message"
   }
 
@@ -173,6 +179,7 @@ view: booking_routehappy_itineraries {
     sql: ${itineraries_with_unmatched_fares} / NULLIF(${itinerary_count}, 0) ;;
     value_format_name: percent_2
     label: "Unmatched Fares Coverage %"
+    hidden: yes
     # group_label: "Unmatched Fares"
   }
 
@@ -198,6 +205,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Advance Change Coverage %"
     group_label: "Advance Change"
+    hidden: yes
   }
 
 #  =========================== Advance Change Anytime Measures ===========================
@@ -222,6 +230,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Anytime Coverage %"
     group_label: "Advance Change"
+    hidden: yes
   }
 
 #  =========================== Advance Change Anytime No Show Measures ===========================
@@ -246,6 +255,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Anytime No Show Coverage %"
     group_label: "Advance Change"
+    hidden: yes
   }
 
 #  =========================== Advance Change Before Departure Measures ===========================
@@ -270,6 +280,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Before Departure Coverage %"
     group_label: "Advance Change"
+    hidden: yes
   }
 
 #  =========================== Advance Change Before Departure No Show Measures ===========================
@@ -294,6 +305,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Before Departure No Show Coverage %"
     group_label: "Advance Change"
+    hidden: yes
   }
 
 #  =========================== Advance Change After Departure Measures ===========================
@@ -318,6 +330,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "After Departure Coverage %"
     group_label: "Advance Change"
+    hidden: yes
   }
 
 #  =========================== Advance Change After Departure No Show Measures ===========================
@@ -343,6 +356,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "After Departure No Show Coverage %"
     group_label: "Advance Change"
+    hidden: yes
   }
 
 #  =========================== Cancellation Measures ===========================
@@ -366,6 +380,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Cancellation Coverage %"
     group_label: "Cancellation"
+    hidden: yes
   }
 #  =========================== Cancellation After Departure Measures ===========================
   measure: itineraries_with_after_departure {
@@ -388,6 +403,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "After Departure Coverage %"
     group_label: "Cancellation"
+    hidden: yes
   }
 
 #  =========================== Cancellation After Departure No Show Measures ===========================
@@ -411,6 +427,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "After Departure No Show Coverage %"
     group_label: "Cancellation"
+    hidden: yes
   }
 
 #  =========================== Cancellation Anytime Measures ===========================
@@ -434,6 +451,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Anytime Coverage %"
     group_label: "Cancellation"
+    hidden: yes
   }
 
 
@@ -458,6 +476,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Anytime No Show Coverage %"
     group_label: "Cancellation"
+    hidden: yes
   }
 #  =========================== Cancellation Before Departure Measures ===========================
   measure: itineraries_with_before_departure {
@@ -480,6 +499,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Before Departure Coverage %"
     group_label: "Cancellation"
+    hidden: yes
   }
 
 #  =========================== Cancellation Before Departure Measures ===========================
@@ -503,6 +523,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Before Departure No Show Coverage %"
     group_label: "Cancellation"
+    hidden: yes
   }
 
 #  =========================== Same Day Change Measures ===========================
@@ -526,6 +547,7 @@ view: booking_routehappy_itineraries {
     value_format_name: percent_2
     label: "Same Day Change Coverage %"
     # group_label: "Same Day Change"
+    hidden: yes
   }
 
 }
