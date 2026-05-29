@@ -94,4 +94,21 @@ explore: optimizer_attempt_bookings {
     relationship: one_to_one
   }
 
+  join: optimizer_candidate_routehappy_itineraries {
+    type: left_outer
+    relationship: one_to_one
+    view_label: "Candidate RouteHappy"
+    sql_on: ${optimizer_candidate_routehappy_itineraries.candidate_id} = ${optimizer_candidates.id} ;;
+  }
+
+  join: candidate_routehappy_documents {
+    from: routehappy_documents
+    type: left_outer
+    relationship: many_to_one
+    view_label: "Candidate RouteHappy Payload"
+    sql_on:
+      ${candidate_routehappy_documents.id} = ${optimizer_candidate_routehappy_itineraries.routehappy_document_id}
+      AND ${candidate_routehappy_documents.schema_name} = 'RespItinerary' ;;
+  }
+
 }
