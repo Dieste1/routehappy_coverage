@@ -93,6 +93,12 @@ view: optimizer_candidates {
     group_label: "3. Optimizer"
   }
 
+  dimension: reprice_index {
+    type: string
+    sql:  ${TABLE}.reprice_index;;
+    group_label: "3. Optimizer"
+  }
+
   dimension: candidacy {
     type: string
     sql:  ${TABLE}.candidacy;;
