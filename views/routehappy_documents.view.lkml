@@ -29,7 +29,7 @@ view: routehappy_documents {
       ELSE JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.data, '$.rq.segments[0].fbc'))
     END ;;
     group_label: "1. Request"
-    hidden: yes
+    # hidden: yes
   }
 
   dimension: rbd {
